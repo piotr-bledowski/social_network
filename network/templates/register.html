@@ -6,14 +6,43 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+        <script src="https://kit.fontawesome.com/63deac6e79.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h1>REGISTER</h1>
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{form}}
-            <input type="submit">
-        </form>
+        <div class="form-div-wrapper">
+            <div class='form-div'>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <div class="descriptor">
+                            <i class="fa-solid fa-pen icon"></i>
+                        </div>
+                        {{form.username}}
+                    </div>
+                    <div class="form-field">
+                        <div class="descriptor">
+                            <i class="fa-solid fa-envelope icon"></i>
+                        </div>
+                        {{form.email}}
+                    </div>
+                    <div class="form-field">
+                        <div class="descriptor">
+                            <i class="fa-solid fa-key icon"></i>
+                        </div>
+                        {{form.password1}}
+                    </div>
+                    <div class="form-field">
+                        <div class="descriptor">
+                            <i class="fa-solid fa-key icon"></i>
+                        </div>
+                        {{form.password2}}
+                    </div>
+                    <input type="submit" value="Sign up" class="submit-button">
+                </form>
+            </div>
+        </div>
     </body>
 </html>
