@@ -10,6 +10,10 @@
     </head>
     <body>
         <h1>REGISTER</h1>
-        {{form}}
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit">
+        </form>
     </body>
 </html>
