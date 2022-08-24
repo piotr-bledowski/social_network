@@ -6,3 +6,15 @@ from django.contrib.auth.models import User
 
 class User(User):
     pass
+
+
+class Post(models.Model):
+    pass
+
+
+class Message(models.Model):
+    pass
+
+
+class Comment(models.Model):
+    pass
