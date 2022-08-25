@@ -2,14 +2,7 @@ from rest_framework import serializers
 from .models import User, Post, Comment, CommentResponse
 
 
-class UserSerializer(serializers.Serializer):
-    usernane = serializers.CharField()
-    email = serializers.EmailField()
-
-
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
-
     class Meta:
         model = Post
         fields = ['id', 'group_id', 'author', 'title',
@@ -17,9 +10,6 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    post = PostSerializer()
-    author = UserSerializer()
-
     class Meta:
         model = Comment
         fields = ['id', 'post_id', 'author',
@@ -27,8 +17,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CommentResponseSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer()
-    author = UserSerializer()
 
     class Meta:
         model = CommentResponse
