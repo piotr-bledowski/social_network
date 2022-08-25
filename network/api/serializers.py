@@ -8,6 +8,7 @@ class UserSerializer(serializers.Serializer):
 
 class PostSerializer(serializers.Serializer):
     id = serializers.IntegerField()
+    group_id = serializers.IntegerField()
     author = UserSerializer()
     title = serializers.CharField()
     text = serializers.CharField()
