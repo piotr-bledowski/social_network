@@ -8,7 +8,7 @@ class UserSerializer(serializers.Serializer):
 
 class PostSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    author = serializers.CharField()
+    author = UserSerializer()
     title = serializers.CharField()
     text = serializers.CharField()
     image = serializers.ImageField()
@@ -19,8 +19,8 @@ class PostSerializer(serializers.Serializer):
 
 class CommentSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    post_id = serializers.IntegerField()
-    author = serializers.CharField()
+    post = PostSerializer()
+    author = UserSerializer()
     text = serializers.CharField()
     date = serializers.DateTimeField()
     likes = serializers.IntegerField()
@@ -29,8 +29,8 @@ class CommentSerializer(serializers.Serializer):
 
 class CommentResponseSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    comment_id = serializers.IntegerField()
-    author = serializers.CharField()
+    comment = CommentSerializer()
+    author = UserSerializer()
     text = serializers.CharField()
     date = serializers.DateTimeField()
     likes = serializers.IntegerField()
