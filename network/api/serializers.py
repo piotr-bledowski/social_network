@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import User, Post, Comment, CommentResponse
 
 
 class UserSerializer(serializers.Serializer):
@@ -6,32 +7,29 @@ class UserSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 
-class PostSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    group_id = serializers.IntegerField()
+class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer()
-    title = serializers.CharField()
-    text = serializers.CharField()
-    image = serializers.ImageField()
-    date = serializers.DateTimeField()
-    likes = serializers.IntegerField()
-    comments = serializers.IntegerField()
+
+    class Meta:
+        model = Post
+        fields = ['id', 'group_id', 'author', 'title',
+                  'text', 'image', 'date', 'likes', 'comments']
 
 
-class CommentSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+class CommentSerializer(serializers.ModelSerializer):
     post = PostSerializer()
     author = UserSerializer()
-    text = serializers.CharField()
-    date = serializers.DateTimeField()
-    likes = serializers.IntegerField()
-    responses = serializers.IntegerField()
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'post_id', 'author',
+                  'text', 'date', 'likes', 'responses']
 
 
-class CommentResponseSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+class CommentResponseSerializer(serializers.ModelSerializer):
     comment = CommentSerializer()
     author = UserSerializer()
-    text = serializers.CharField()
-    date = serializers.DateTimeField()
-    likes = serializers.IntegerField()
+
+    class Meta:
+        model = CommentResponse
+        fields = ['id', 'comment_id', 'author', 'text', 'date', 'likes']

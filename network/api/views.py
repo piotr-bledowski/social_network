@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from .models import User, Post, Comment, CommentResponse
+from .serializers import PostSerializer, CommentSerializer, CommentResponseSerializer
 
 # Create your views here.
 
@@ -23,7 +25,9 @@ def create_post(request):
 
 @api_view()
 def get_all_posts(request):
-    pass
+    posts = Post.objects.all()
+    serialized_posts = PostSerializer(posts, many=True)
+    return Response(serialized_posts.data)
 
 
 @api_view()
