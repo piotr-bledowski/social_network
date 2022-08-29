@@ -21,7 +21,7 @@ def index(request):
 
 @api_view(['POST'])
 def create_post(request):
-    serializer = PostSerializer(data=json.loads(request.body.decode('utf-8')))
+    serializer = PostSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -31,25 +31,29 @@ def create_post(request):
 @api_view(['GET'])
 def get_all_posts(request):
     posts = Post.objects.all()
-    serialized_posts = PostSerializer(posts, many=True)
-    return Response(serialized_posts.data)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
-def get_post(request, post_id):
-    pass
+def get_post(request, id):
+    post = Post.objects.get(id=id)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
-def edit_post(request, post_id):
+def edit_post(request, id):
     pass
 
 
 @api_view(['GET'])
 def get_public_posts(request):
-    pass
+    posts = Post.objects.filter(group_id=None)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
-def get_group_posts(request, group_id):
+def get_group_posts(request, id):
     pass
