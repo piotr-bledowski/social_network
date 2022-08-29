@@ -13,24 +13,30 @@ code {
     monospace;
 }
 
+#network-name {
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: absolute;
+  left: 6%;
+  top: -10%;
+}
+
 .top-bar {
   position: fixed;
   height: 7%;
   width: 100%;
-  background-color: bisque;
   display: block;
+  z-index: 1;
 }
 
-.navbar-item {
-  display: inline;
-  margin-top: 5px;
-}
+.navbar-item {}
 
 .main-icon {
   display: inline-block;
   height: 70%;
   position: absolute;
   left: 10px;
+  margin-top: 5px;
 }
 
 .main {
@@ -39,10 +45,98 @@ code {
   height: 93%;
   width: 100%;
   display: block;
+  z-index: 0;
 }
 
 .flex-container {
   height: 100%;
   width: 100%;
   display: flex;
+}
+
+.dropdown-btn {
+  border: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 10%;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  height: 200%;
+  width: 10%;
+  right: 0;
+  top: 100%;
+  text-align: center;
+}
+
+.dropdown-content a {
+  display: block;
+  text-decoration: none;
+  color: #eee;
+}
+
+.dropdown-btn:hover {
+  .dropdown-content {
+    display: block;
+  }
+}
+
+.theme-espresso {
+  background-color: #2b1000;
+  color: #eee;
+
+  button {
+    transition: all 0.5s;
+    background-color: #2b1000;
+    color: #eee;
+  }
+
+  button:hover {
+    background-color: #1C0A00;
+  }
+
+  .main {
+    background-color: #1C0A00;
+  }
+}
+
+#espresso-theme {
+  background-color: #1C0A00;
+  transition: all 0.5s;
+}
+
+#espresso-theme:hover {
+  background-color: #2b1000;
+}
+
+#cappuccino-theme {
+  background-color: #562100;
+  transition: all 0.5s;
+}
+
+#cappuccino-theme:hover {
+  background-color: #603601;
+}
+
+#latte-theme {
+  background-color: #DAB88B;
+  transition: all 0.5s;
+  color: #111;
+}
+
+#latte-theme:hover {
+  background-color: #F4DFBA;
+}
+
+#yerba-theme {
+  background-color: #1E5128;
+  transition: all 0.5s;
+}
+
+#yerba-theme:hover {
+  background-color: #3E7C17;
 }
