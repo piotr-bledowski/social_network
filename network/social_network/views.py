@@ -32,3 +32,7 @@ def loginPage(request):  # named loginPage instead of login in order to avoid co
         return redirect('index')
 
     return render(request, 'login.html')
+
+
+def logoutUser(request):
+    return redirect('login')
