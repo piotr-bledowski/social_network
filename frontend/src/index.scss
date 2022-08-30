@@ -63,44 +63,113 @@ code {
 }
 
 .dropdown-content {
-  display: block;
+  display: none;
   position: absolute;
   z-index: 0;
-  height: 200%;
-  width: 10%;
-  right: 0;
+  height: 180%;
+  width: 100%;
   top: 100%;
+  right: 0;
   text-align: center;
 }
 
 .dropdown-content a {
+  height: 25%;
   display: block;
   text-decoration: none;
   color: #eee;
+  padding-top: 10%;
 }
 
-.dropdown-btn:hover {
-  .dropdown-content {
-    display: block;
-  }
+.dropdown-btn:hover .dropdown-content {
+  display: block;
 }
+
+$espresso-primary: #1C0A00;
+$espresso-secondary: #2b1000;
+
+$cappuccino-primary: #562100;
+$cappucino-secondary: #533004;
+
+$latte-primary: #DAB88B;
+$latte-secondary: #F4DFBA;
+
+$yerba-primary: #1E5128;
+$yerba-secondary: #3E7C17;
 
 .theme-espresso {
-  background-color: #2b1000;
+  background-color: $espresso-secondary;
   color: #eee;
 
   button {
     transition: all 0.5s;
-    background-color: #2b1000;
+    background-color: $espresso-secondary;
     color: #eee;
   }
 
   button:hover {
-    background-color: #1C0A00;
+    background-color: $espresso-primary;
   }
 
   .main {
-    background-color: #1C0A00;
+    background-color: $espresso-primary;
+  }
+}
+
+.theme-cappuccino {
+  background-color: $cappucino-secondary;
+  color: #eee;
+
+  button {
+    transition: all 0.5s;
+    background-color: $cappucino-secondary;
+    color: #eee;
+  }
+
+  button:hover {
+    background-color: $cappuccino-primary;
+  }
+
+  .main {
+    background-color: $cappuccino-primary;
+  }
+}
+
+.theme-latte {
+  background-color: $latte-secondary;
+  color: #111;
+
+  button {
+    transition: all 0.5s;
+    background-color: $latte-secondary;
+    color: #111;
+  }
+
+  button:hover {
+    background-color: $latte-primary;
+  }
+
+  .main {
+    background-color: $latte-primary;
+  }
+}
+
+.theme-yerba {
+  background-color: $yerba-secondary;
+  color: #eee;
+
+  button {
+    transition: all 0.5s;
+    background-color: $yerba-secondary;
+    color: #eee;
+  }
+
+  button:hover {
+    background-color: $yerba-primary;
+  }
+
+  .main {
+    background-color: $yerba-primary;
   }
 }
 
