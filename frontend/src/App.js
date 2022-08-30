@@ -2,10 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 import TopBar from './components/TopBar'
 import { ThemeContext } from './ThemeContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [theme, setTheme] = useState('espresso');
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('current-theme'); // localStorage saves theme on page reload
+    if (currentTheme) {
+      setTheme(currentTheme);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
