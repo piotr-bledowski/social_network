@@ -1,12 +1,12 @@
 body {
-    background-color: #1c1c59;
-    color: #dddddd;
+    background-color: #DAB88B;
+    color: #111;
 }
 
 .form-div {
-    background-color: #404097;
+    background-color: #F4DFBA;
     width: 20vw;
-    height: 25vh;
+    height: 30vh;
     position: absolute;
     top: 25vh;
     left: 40vw;
@@ -32,8 +32,8 @@ input {
     width: 90%;
     margin-left: 7%;
     border-radius: 0px 5px 5px 0px;
-    border: #4a69bd 2px solid;
-    background-color: #82ccdd;
+    border: #DAB88B 2px solid;
+    background-color: #F4DFBA;
     padding-left: 10px;
 }
 
@@ -42,32 +42,52 @@ input {
     margin-left: 35%;
     width: 30%;
     height: 20%;
-    background-color: #f39c12;
+    background-color: #F4DFBA;
     border-radius: 15px;
-    border: #e67e22 3px solid;
+    border: #DAB88B 3px solid;
     font-size: larger;
     font-weight: bold;
     transition: all 0.5s;
 }
 
 .submit-button:hover {
-    background-color: #f37e00;
-    border: #fa6800 3px solid;
+    background-color: #DAB88B;
+    border: #DAB88B 3px solid;
     transition: all 0.5s;
 }
 
 .descriptor {
+    color: #DAB88B;
     display: inline;
     font-size: larger;
     position: absolute;
     height: 1.3em;
     width: 1.3em;
-    background-color: #f39c12;
+    background-color: #F4DFBA;
     border-radius: 5px 0px 0px 5px;
-    border: #e67e22 2px solid;
+    border: #DAB88B 2px solid;
 }
 
 .icon {
     margin-left: 3px;
     margin-top: 3px;
+}
+
+form {
+    display: block;
+}
+
+#link-div {
+    display: block;
+    text-align: center;
+}
+
+a {
+    position: absolute;
+    top: 85%;
+    left: 45%;
+}
+
+.login-form-div {
+    height: 19vh;
 }
