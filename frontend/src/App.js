@@ -3,7 +3,9 @@ import './App.css';
 import TopBar from './components/TopBar'
 import { ThemeContext } from './contexts/ThemeContext';
 import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const [theme, setTheme] = useState('espresso');
@@ -20,7 +22,10 @@ function App() {
       <div className={"App theme-" + theme}>
         <TopBar />
         <div className='main'>
-          <button onClick={() => <Navigate to='/login' />}>LOGIN</button>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+          </Routes>
         </div>
       </div>
     </ThemeContext.Provider>
