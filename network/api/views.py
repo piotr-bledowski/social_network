@@ -3,7 +3,22 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User, Post, Comment, CommentResponse
 from .serializers import PostSerializer, CommentSerializer, CommentResponseSerializer
-import json
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+# JWT views (customizing information the token contains, such as username)
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 # Create your views here.
 
