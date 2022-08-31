@@ -16,10 +16,14 @@ function App() {
       <UserProvider>
         <TopBar />
         <div className='main'>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-          </Routes>
+          <span className='left-bar side-bar'></span>
+          <span className='feed'>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/profile' element={<ProfilePage />} />
+            </Routes>
+          </span>
+          <span className='right-bar side-bar'></span>
         </div>
       </UserProvider>
     </div>

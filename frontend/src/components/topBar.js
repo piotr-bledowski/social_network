@@ -9,8 +9,8 @@ const TopBar = () => {
     return (
         <div className='top-bar'>
             <div className="flex-container">
-                <FontAwesomeIcon className='navbar-item main-icon' icon={faMugHot} />
-                <h1 id='network-name'>BEAN HUB</h1>
+                <FontAwesomeIcon className='main-icon' icon={faMugHot} />
+                <h1 id='network-name'><a href='/'>BEAN HUB</a></h1>
                 <ProfileButton />
                 <LogoutButton />
                 <ThemeDropdown />
