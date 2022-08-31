@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import TopBar from './components/TopBar'
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './contexts/ThemeContext';
 import { useEffect, useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
   const [theme, setTheme] = useState('espresso');
@@ -18,7 +19,9 @@ function App() {
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={"App theme-" + theme}>
         <TopBar />
-        <div className='main'></div>
+        <div className='main'>
+          <button onClick={() => <Navigate to='/login' />}>LOGIN</button>
+        </div>
       </div>
     </ThemeContext.Provider>
   );
