@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return render(request, 'build/index.html')
+    print(request.user.username)
+    return render(request, 'build/index.html', {'username': request.user.username})
 
 
 def registerPage(request):

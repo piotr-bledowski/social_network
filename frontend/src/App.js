@@ -2,23 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 import TopBar from './components/TopBar'
 import { ThemeContext } from './contexts/ThemeContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
-  const [theme, setTheme] = useState('espresso');
-
-  useEffect(() => {
-    const currentTheme = localStorage.getItem('current-theme'); // localStorage saves theme on page reload
-    if (currentTheme) {
-      setTheme(currentTheme);
-    }
-  }, []);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <AuthProvider>
       <div className={"App theme-" + theme}>
         <TopBar />
         <div className='main'>
@@ -28,7 +22,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </ThemeContext.Provider>
+    </AuthProvider>
   );
 }
 

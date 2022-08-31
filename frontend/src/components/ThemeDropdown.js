@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const ThemeDropdown = () => {
-    const { theme, setTheme } = useContext(ThemeContext);
+    const { setTheme } = useContext(ThemeContext);
 
     const handleClick = (theme) => {
         setTheme(theme);
