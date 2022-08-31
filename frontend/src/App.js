@@ -6,14 +6,14 @@ import { useEffect, useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
-import { AuthProvider } from './contexts/AuthContext';
+import { UserProvider } from './contexts/UserContext';
 
 function App() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <AuthProvider>
-      <div className={"App theme-" + theme}>
+    <div className={"App theme-" + theme}>
+      <UserProvider>
         <TopBar />
         <div className='main'>
           <Routes>
@@ -21,8 +21,8 @@ function App() {
             <Route path='/profile' element={<ProfilePage />} />
           </Routes>
         </div>
-      </div>
-    </AuthProvider>
+      </UserProvider>
+    </div>
   );
 }
 

@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    print(request.user.username)
     return render(request, 'build/index.html', {'username': request.user.username})
 
 
@@ -37,4 +36,5 @@ def loginPage(request):  # named loginPage instead of login in order to avoid co
 
 
 def logoutUser(request):
+    logout(request)
     return redirect('login')

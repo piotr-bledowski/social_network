@@ -12,7 +12,7 @@ const ThemeDropdown = () => {
     return (
         <>
             <button className='dropdown-btn'>
-                Theme
+                <h3>Theme</h3>
                 <div className="dropdown-content">
                     <a href='#' id='espresso-theme' onClick={() => handleClick('espresso')}>Espresso</a>
                     <a href='#' id='cappuccino-theme' onClick={() => handleClick('cappuccino')}>Cappuccino</a>
