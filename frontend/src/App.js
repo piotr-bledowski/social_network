@@ -7,9 +7,10 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import { UserProvider } from './contexts/UserContext';
+import { useTheme } from './utils/helpers'
 
 function App() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   return (
     <div className={"App theme-" + theme}>
