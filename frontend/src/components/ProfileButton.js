@@ -1,8 +1,7 @@
-import { UserContext } from "../contexts/UserContext";
-import { useContext } from "react";
+import { useUser } from "../utils/hooks";
 
 const ProfileButton = () => {
-    const user = useContext(UserContext);
+    const user = useUser();
 
     return (
         <a id='profile-link' href='profile'>

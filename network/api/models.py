@@ -9,7 +9,6 @@ sys.path.append('../network')
 
 
 class Post(models.Model):
-    id = models.IntegerField(primary_key=True, unique=True, auto_created=True)
     group_id = models.IntegerField(null=True, blank=True)
     author = models.CharField(max_length=32, blank=False)
     title = models.CharField(max_length=64, blank=False)

@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import { UserProvider } from './contexts/UserContext';
-import { useTheme } from './utils/helpers'
+import { useTheme } from './utils/hooks'
 
 function App() {
   const { theme } = useTheme();
@@ -16,6 +16,7 @@ function App() {
     <div className={"App theme-" + theme}>
       <UserProvider>
         <TopBar />
+        <div className='background'></div>
         <div className='main'>
           <span className='left-bar side-bar'></span>
           <span className='feed'>

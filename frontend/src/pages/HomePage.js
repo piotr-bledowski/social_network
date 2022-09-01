@@ -1,11 +1,10 @@
+import PostList from "../components/PostList";
 
 
 const HomePage = () => {
     return (
         <>
-            <h1>
-                Home page!
-            </h1>
+            <PostList />
         </>
     )
 }
