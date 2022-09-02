@@ -12,5 +12,6 @@ urlpatterns = [
     path('get_post/<int:id>', views.get_post),
     path('edit_post/<int:id>', views.edit_post),
     path('get_public_posts/', views.get_public_posts),
+    path('get_users_posts/<str:username>', views.get_users_posts),
     path('get_group_posts/<int:id>', views.get_group_posts),
 ]

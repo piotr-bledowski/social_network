@@ -36,6 +36,11 @@ class CommentResponse(models.Model):
     likes = models.IntegerField(default=0)
 
 
-class PostLikes(models.Model):
+class PostLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
+class ProfilePicture(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    picture = models.ImageField(null=True, blank=True)

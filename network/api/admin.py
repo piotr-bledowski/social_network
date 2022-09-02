@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, CommentResponse, PostLikes
+from .models import Post, Comment, CommentResponse, PostLike, ProfilePicture
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
@@ -14,7 +14,12 @@ class CommentResponseAdmin(admin.ModelAdmin):
 class PostLikesAdmin(admin.ModelAdmin):
     pass
 
+
+class ProfilePictureAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(CommentResponse, CommentResponseAdmin)
-admin.site.register(PostLikes, PostLikesAdmin)
+admin.site.register(PostLike, PostLikesAdmin)
+admin.site.register(ProfilePicture, ProfilePictureAdmin)
