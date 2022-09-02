@@ -1,9 +1,11 @@
 import { faMugHot, faPenNib } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { shortText } from "../utils/helpers";
 
+// The post displayed on the feed with main text shortened as nesessary and no comments displayed
 
 const Post = ({ post }) => {
-    const { author, title, text, date } = post;
+    const { author, title, text, date, img } = post;
 
     return (
         <div className="post">
@@ -13,7 +15,7 @@ const Post = ({ post }) => {
                 <h3 className="post-title">{title}</h3>
             </div>
             <div className="post-content">
-                <p>{text}</p>
+                {shortText(img, text)}
             </div>
             <div className="post-bottom-bar">
                 <button className="like-button">
