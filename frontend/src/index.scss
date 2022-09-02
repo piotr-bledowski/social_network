@@ -333,6 +333,65 @@ $yerba-secondary: #3E7C17;
 .post-content {
   width: 100%;
   display: block;
+  padding-bottom: 10px;
+
+  p {
+    margin: 2%;
+  }
+}
+
+.post-author {
+  display: inline;
+  position: relative;
+  left: 2%;
+  top: 2%;
+}
+
+.post-date {
+  display: inline;
+  position: absolute;
+  right: 5%;
+  font-size: small;
+}
+
+.post-title {
+  position: relative;
+  left: 2%;
+}
+
+.post-bottom-bar {
+  display: block;
+  height: 3rem;
+}
+
+.like-button {
+  height: 100%;
+  display: inline;
+  width: 25%;
+
+  h4 {
+    display: inline;
+    position: relative;
+    left: 5%;
+  }
+}
+
+.comment-button {
+  height: 100%;
+  display: inline;
+  width: 25%;
+
+  h4 {
+    display: inline;
+    position: relative;
+    left: 5%;
+  }
+}
+
+.post-icon {
+  display: inline;
+  position: relative;
+  bottom: 3%;
 }
 
 .post-list {

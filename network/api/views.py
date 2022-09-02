@@ -64,7 +64,7 @@ def edit_post(request, id):
 
 @api_view(['GET'])
 def get_public_posts(request):
-    posts = Post.objects.filter(group_id=None)
+    posts = Post.objects.filter(group=None)
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
