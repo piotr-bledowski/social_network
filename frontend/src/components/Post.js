@@ -5,7 +5,7 @@ import PostContent from "./PostContent";
 // The post displayed on the feed with main text shortened as nesessary and no comments displayed
 
 const PostFeed = ({ post }) => {
-    const { author, title, text, date, img, detailed } = post;
+    const { author, title, text, date, img, likes, comments, detailed } = post;
 
     return (
         <div className="post">
@@ -16,8 +16,8 @@ const PostFeed = ({ post }) => {
             </div>
             <PostContent data={{ img: img, text: text, detailed: detailed }} />
             <div className="post-bottom-bar">
-                <LikeButton />
-                <CommentButton />
+                <LikeButton likes={likes} />
+                <CommentButton comments={comments} />
             </div>
         </div>
     )

@@ -362,30 +362,30 @@ $yerba-secondary: #3E7C17;
 .post-bottom-bar {
   display: block;
   height: 3rem;
+
+  h3 {
+    display: inline;
+    position: relative;
+    right: 8%;
+  }
+
+  h4 {
+    display: inline;
+    position: relative;
+    left: 5%;
+  }
 }
 
 .like-button {
   height: 100%;
   display: inline;
   width: 25%;
-
-  h4 {
-    display: inline;
-    position: relative;
-    left: 5%;
-  }
 }
 
 .comment-button {
   height: 100%;
   display: inline;
   width: 25%;
-
-  h4 {
-    display: inline;
-    position: relative;
-    left: 5%;
-  }
 }
 
 .post-icon {
