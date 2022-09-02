@@ -16,7 +16,7 @@ const PostFeed = ({ post }) => {
             </div>
             <PostContent data={{ img: img, text: text, detailed: detailed }} />
             <div className="post-bottom-bar">
-                <LikeButton data={{ id, likes }} />
+                <LikeButton likeData={{ id, likes }} />
                 <CommentButton comments={comments} />
             </div>
         </div>

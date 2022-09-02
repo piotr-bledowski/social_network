@@ -87,9 +87,10 @@ def get_group_posts(request, id):
 
 
 @api_view(['POST'])
-def like_post(request, id):
+def like_post(request, username, id):
+    user = User.objects.get(username=username)
     post = Post.objects.get(id=id)
-    new_like = PostLike(user=request.user, post=post)
+    new_like = PostLike(user=user, post=post)
     new_like.save() # add record to PostLike table
     post.likes += 1
     post.save() # update post with increased likes number
@@ -97,9 +98,10 @@ def like_post(request, id):
 
 
 @api_view(['DELETE'])
-def unlike_post(request, id):
+def unlike_post(request, username, id):
+    user = User.objects.get(username=username)
     post = Post.objects.get(id=id)
-    unline = PostLike.objects.get(user=request.user, post=post)
+    unline = PostLike.objects.get(user=user, post=post)
     unline.delete() # remove record from PostLike table
     post.likes -= 1
     post.save() # update post with decreased likes number
@@ -107,10 +109,11 @@ def unlike_post(request, id):
 
 
 @api_view(['GET'])
-def is_liked(request, id):
+def is_liked(request, username, id):
     try:
+        user = User.objects.get(username=username)
         post = Post.objects.get(id=id)
-        PostLike.objects.get(user=request.user, post=post)
+        PostLike.objects.get(user=user, post=post)
         return Response({"liked": "yes"})
     except PostLike.DoesNotExist:
         return Response({"liked": "no"})
