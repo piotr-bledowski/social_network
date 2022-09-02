@@ -1,4 +1,4 @@
-import { useUser } from "../utils/hooks";
+import { useUser } from "../../utils/hooks";
 
 const ProfileButton = () => {
     const user = useUser();

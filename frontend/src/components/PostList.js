@@ -1,6 +1,6 @@
 import { useUser } from '../utils/hooks';
 import { useFetch } from '../utils/hooks';
-import Post from './PostFeed';
+import PostFeed from './Post';
 
 const PostList = () => {
     const user = useUser();
@@ -13,7 +13,7 @@ const PostList = () => {
     return (
         <div className='post-list'>
             {data.map((post) =>
-                <Post post={post} />
+                <PostFeed post={{ ...post, detailed: false }} />
             )}
         </div>
     )

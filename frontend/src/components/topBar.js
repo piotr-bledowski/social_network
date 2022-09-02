@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import ThemeDropdown from "./ThemeDropdown";
-import ProfileButton from "./ProfileButton";
-import LogoutButton from "./LogoutButton";
+import ProfileButton from "./buttons/ProfileButton";
+import LogoutButton from "./buttons/LogoutButton";
 
 const TopBar = () => {
 
