@@ -27,13 +27,14 @@ class MyTokenObtainPairView(TokenObtainPairView):
 def index(request):
     return Response({
         "Create new post": '/create_post/',
-        "Get a specific post": '/get_post/<int:id>',
-        "Edit a specific post": '/edit_post/<int:id>',
+        "Get a specific post": '/get_post/<int:post_id>',
+        "Edit a specific post": '/edit_post/<int:post_id>',
         "Get all posts": '/get_all_posts/',
         "Get user's posts": '/get_users_posts/<str:username>',
         "Get all public posts": 'get_public_posts', # to delete later
-        "Like a post": "/like_post/<int:id>",
-        "Unlike a post": "/unlike_post/<int:id>",
+        "Like a post": "/like_post/<int:post_id>",
+        "Unlike a post": "/unlike_post/<int:post_id>",
+        "Is this post liked by current user?": "/is_liked/<int:post_id>",
     })
 
 
@@ -103,3 +104,13 @@ def unlike_post(request, id):
     post.likes -= 1
     post.save() # update post with decreased likes number
     return Response({f"post {id} unliked by": f" user {request.user}"})
+
+
+@api_view(['GET'])
+def is_liked(request, id):
+    try:
+        post = Post.objects.get(id=id)
+        PostLike.objects.get(user=request.user, post=post)
+        return Response({"liked": "yes"})
+    except PostLike.DoesNotExist:
+        return Response({"liked": "no"})

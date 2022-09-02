@@ -1,8 +1,11 @@
 import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
-const LikeButton = ({ likes }) => {
+const LikeButton = ({ data }) => {
+    const { id, likes } = data;
 
+    const [liked, setLiked] = useState(false);
 
     return (
         <button className="like-button">
