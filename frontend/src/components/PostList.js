@@ -1,6 +1,6 @@
 import { useUser } from '../utils/hooks';
 import { useFetch } from '../utils/hooks';
-import Post from './Post';
+import Post from './PostFeed';
 
 const PostList = () => {
     const user = useUser();
