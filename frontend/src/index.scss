@@ -111,10 +111,6 @@ $yerba-secondary: #3E7C17;
   background-color: $espresso-secondary;
   color: #eee;
 
-  .background {
-    background-color: $espresso-primary;
-  }
-
   a {
     color: #eee;
   }
@@ -125,23 +121,16 @@ $yerba-secondary: #3E7C17;
     color: #eee;
   }
 
-  button:hover {
-    background-color: $espresso-primary;
-  }
-
+  button:hover,
+  .background,
   .main {
     background-color: $espresso-primary;
   }
 
-  .side-bar {
-    background-color: $espresso-secondary;
-  }
-
-  .post {
-    background-color: $espresso-secondary;
-  }
-
-  .flex-container {
+  .side-bar,
+  .post,
+  .flex-container,
+  .post-form-div {
     background-color: $espresso-secondary;
   }
 }
@@ -160,19 +149,15 @@ $yerba-secondary: #3E7C17;
     color: #eee;
   }
 
-  button:hover {
-    background-color: $cappuccino-primary;
-  }
-
+  button:hover,
   .main {
     background-color: $cappuccino-primary;
   }
 
-  .side-bar {
-    background-color: $cappuccino-secondary;
-  }
-
-  .post {
+  .side-bar,
+  .post,
+  .flex-container,
+  .post-form-div {
     background-color: $cappuccino-secondary;
   }
 }
@@ -191,19 +176,15 @@ $yerba-secondary: #3E7C17;
     color: #111;
   }
 
-  button:hover {
-    background-color: $latte-primary;
-  }
-
+  button:hover,
   .main {
     background-color: $latte-primary;
   }
 
-  .side-bar {
-    background-color: $latte-secondary;
-  }
-
-  .post {
+  .side-bar,
+  .post,
+  .flex-container,
+  .post-form-div {
     background-color: $latte-secondary;
   }
 }
@@ -222,19 +203,15 @@ $yerba-secondary: #3E7C17;
     color: #eee;
   }
 
-  button:hover {
-    background-color: $yerba-primary;
-  }
-
+  button:hover,
   .main {
     background-color: $yerba-primary;
   }
 
-  .side-bar {
-    background-color: $yerba-secondary;
-  }
-
-  .post {
+  .side-bar,
+  .post,
+  .flex-container,
+  .post-form-div {
     background-color: $yerba-secondary;
   }
 }
@@ -407,4 +384,9 @@ $yerba-secondary: #3E7C17;
   z-index: 0;
   height: 100vh;
   width: 100vw;
+}
+
+.post-form-div {
+  position: relative;
+  top: 2.5vh;
 }

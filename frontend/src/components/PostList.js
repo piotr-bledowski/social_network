@@ -1,6 +1,7 @@
 import { useUser } from '../utils/hooks';
 import { useFetch } from '../utils/hooks';
 import PostFeed from './Post';
+import PostForm from './PostForm';
 
 const PostList = () => {
     const user = useUser();
@@ -12,6 +13,7 @@ const PostList = () => {
 
     return (
         <div className='post-list'>
+            <PostForm />
             {data.map((post) =>
                 <PostFeed post={{ ...post, detailed: false }} />
             )}
