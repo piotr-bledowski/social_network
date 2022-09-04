@@ -14,7 +14,8 @@ code {
     monospace;
 }
 
-button {
+button,
+.btn-input {
   cursor: pointer;
   border: none;
 }
@@ -97,31 +98,40 @@ a {
 
 $espresso-primary: #1C0A00;
 $espresso-secondary: #2b1000;
+$espresso-input: #341300;
 
 $cappuccino-primary: #562100;
 $cappuccino-secondary: #533004;
+$cappuccino-input: #603704;
 
 $latte-primary: #DAB88B;
 $latte-secondary: #F4DFBA;
+$latte-input: #fce8c5;
 
 $yerba-primary: #1E5128;
 $yerba-secondary: #3E7C17;
+$yerba-input: #4b941e;
+
+$font-dark: #111;
+$font-light: #eee;
 
 .theme-espresso {
   background-color: $espresso-secondary;
-  color: #eee;
+  color: $font-light;
 
   a {
-    color: #eee;
+    color: $font-light;
   }
 
-  button {
+  button,
+  .btn-input {
     transition: all 0.5s;
     background-color: $espresso-secondary;
-    color: #eee;
+    color: $font-light;
   }
 
   button:hover,
+  .btn-input:hover,
   .background,
   .main {
     background-color: $espresso-primary;
@@ -130,26 +140,36 @@ $yerba-secondary: #3E7C17;
   .side-bar,
   .post,
   .flex-container,
-  .post-form-div {
+  .post-form-div,
+  #img-input {
     background-color: $espresso-secondary;
+  }
+
+  input,
+  textarea {
+    background-color: $espresso-input;
+    color: $font-light;
   }
 }
 
 .theme-cappuccino {
   background-color: $cappuccino-secondary;
-  color: #eee;
+  color: $font-light;
 
   a {
-    color: #eee;
+    color: $font-light;
   }
 
-  button {
+  button,
+  .btn-input {
     transition: all 0.5s;
     background-color: $cappuccino-secondary;
-    color: #eee;
+    color: $font-light;
   }
 
   button:hover,
+  .btn-input:hover,
+  .background,
   .main {
     background-color: $cappuccino-primary;
   }
@@ -157,26 +177,36 @@ $yerba-secondary: #3E7C17;
   .side-bar,
   .post,
   .flex-container,
-  .post-form-div {
+  .post-form-div,
+  #img-input {
     background-color: $cappuccino-secondary;
+  }
+
+  input,
+  textarea {
+    background-color: $cappuccino-input;
+    color: $font-light;
   }
 }
 
 .theme-latte {
   background-color: $latte-secondary;
-  color: #111;
+  color: $font-dark;
 
   a {
-    color: #111;
+    color: $font-dark;
   }
 
-  button {
+  button,
+  .btn-input {
     transition: all 0.5s;
     background-color: $latte-secondary;
-    color: #111;
+    color: $font-dark;
   }
 
   button:hover,
+  .btn-input:hover,
+  .background,
   .main {
     background-color: $latte-primary;
   }
@@ -184,26 +214,36 @@ $yerba-secondary: #3E7C17;
   .side-bar,
   .post,
   .flex-container,
-  .post-form-div {
+  .post-form-div,
+  #img-input {
     background-color: $latte-secondary;
+  }
+
+  input,
+  textarea {
+    background-color: $latte-input;
+    color: $font-dark;
   }
 }
 
 .theme-yerba {
   background-color: $yerba-secondary;
-  color: #eee;
+  color: $font-light;
 
   a {
-    color: #eee;
+    color: $font-light;
   }
 
-  button {
+  button,
+  .btn-input {
     transition: all 0.5s;
     background-color: $yerba-secondary;
-    color: #eee;
+    color: $font-light;
   }
 
   button:hover,
+  .btn-input:hover,
+  .background,
   .main {
     background-color: $yerba-primary;
   }
@@ -211,8 +251,15 @@ $yerba-secondary: #3E7C17;
   .side-bar,
   .post,
   .flex-container,
-  .post-form-div {
+  .post-form-div,
+  #img-input {
     background-color: $yerba-secondary;
+  }
+
+  input,
+  textarea {
+    background-color: $yerba-input;
+    color: $font-light;
   }
 }
 
@@ -389,4 +436,39 @@ $yerba-secondary: #3E7C17;
 .post-form-div {
   position: relative;
   top: 2.5vh;
+  min-height: 10rem;
+
+  form {
+    height: 100%;
+    width: 100%;
+    padding: 0.5rem;
+    padding-bottom: 0;
+
+    #title-input {
+      height: 1.5rem;
+    }
+
+    input,
+    textarea {
+      display: block;
+      position: relative;
+      top: 5%;
+      margin: 1rem;
+    }
+
+    #title-input,
+    textarea {
+      width: 90%;
+    }
+
+    textarea {
+      min-height: 5rem;
+    }
+
+    .btn-input {
+      height: 2rem;
+      width: 10%;
+      font-weight: bold;
+    }
+  }
 }

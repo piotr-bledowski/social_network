@@ -7,7 +7,7 @@ export const useTheme = () => useContext(ThemeContext); // made useTheme hook fo
 export const useUser = () => useContext(UserContext); // same with useUser
 
 // a nice shortcut for fetch calls, all that is left is data processing
-export const useFetch = (uri) => {
+export const useFetch = (uri) => { // Used for GET requests unly !!!
     const [data, setData] = useState([]);
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);

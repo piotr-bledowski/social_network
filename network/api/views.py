@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User, Post, Comment, CommentResponse, PostLike
-from .serializers import PostSerializer, CommentSerializer, CommentResponseSerializer
+from .serializers import PostSerializer, CommentSerializer, CommentResponseSerializer, PostSerializerCreate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -40,10 +40,12 @@ def index(request):
 
 @api_view(['POST'])
 def create_post(request):
-    serializer = PostSerializer(data=request.data)
+    print(request.data)
+    serializer = PostSerializerCreate(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+    print(serializer.errors)
     return Response('INVALID POST DATA')
 
 

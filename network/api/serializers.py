@@ -5,11 +5,17 @@ from .models import ProfilePicture, User, Post, Comment, CommentResponse, PostLi
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username']
+        fields = ['username']
+
+
+class PostSerializerCreate(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['group', 'author', 'title',
+                  'text', 'image']
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(many=False)
     class Meta:
         model = Post
         fields = ['id', 'group', 'author', 'title',
