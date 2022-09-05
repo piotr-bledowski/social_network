@@ -1,7 +1,7 @@
 import { shortText } from "../utils/helpers"
 
 const PostContent = ({ data }) => {
-    const { img, text, detailed } = data;
+    const { id, img, text, detailed } = data;
 
     if (detailed) return (
         <div className="post-content">
@@ -11,7 +11,7 @@ const PostContent = ({ data }) => {
 
     return (
         <div className="post-content">
-            {shortText(img, text)}
+            {shortText(id, img, text)}
         </div>
     )
 }

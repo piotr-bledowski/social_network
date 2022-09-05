@@ -6,6 +6,7 @@ import { useEffect, useState, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import PostPage from './pages/PostPage';
 import { UserProvider } from './contexts/UserContext';
 import { useTheme } from './utils/hooks'
 
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/post/:id' element={<PostPage />} />
             </Routes>
           </span>
           <span className='right-bar side-bar'></span>

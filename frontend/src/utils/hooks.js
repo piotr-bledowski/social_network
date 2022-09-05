@@ -13,7 +13,12 @@ export const useFetch = (uri) => { // Used for GET requests unly !!!
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch(uri)
+        fetch(uri, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then(data => data.json())
             .then(setData)
             .then(() => setLoading(false))

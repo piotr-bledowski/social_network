@@ -53,7 +53,7 @@ def create_post(request):
 def get_all_posts(request):
     posts = Post.objects.all()
     serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data[::-1])
 
 
 @api_view(['GET'])
@@ -80,7 +80,7 @@ def edit_post(request, id):
 def get_public_posts(request):
     posts = Post.objects.filter(group=None)
     serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data[::-1])
 
 
 @api_view(['GET'])

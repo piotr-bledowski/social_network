@@ -9,15 +9,6 @@ const PostForm = () => {
     const user = useUser();
 
     const handleSubmit = () => {
-
-        console.log(JSON.stringify({
-            group: null,
-            author: user,
-            title: title,
-            text: text,
-            image: img
-        }))
-
         fetch('api/create_post/', {
             method: 'POST',
             headers: {
