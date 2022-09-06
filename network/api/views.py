@@ -103,8 +103,8 @@ def like_post(request, username, id):
 def unlike_post(request, username, id):
     user = User.objects.get(username=username)
     post = Post.objects.get(id=id)
-    unline = PostLike.objects.get(user=user, post=post)
-    unline.delete() # remove record from PostLike table
+    unlike = PostLike.objects.get(user=user, post=post)
+    unlike.delete() # remove record from PostLike table
     post.likes -= 1
     post.save() # update post with decreased likes number
     return Response({f"post {id} unliked by": f" user {request.user}"})

@@ -11,9 +11,9 @@ const PostPage = () => {
     if (error) return <h1>{JSON.stringify(error)}</h1>;
 
     return (
-        <>
+        <div className="post-wrapper">
             <Post post={{ ...data, detailed: true }} />
-        </>
+        </div>
     )
 }
 
