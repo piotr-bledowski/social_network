@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useFetch } from "../utils/hooks";
 import Post from "../components/Post";
-import { useState } from "react";
+import CommentSection from "../components/CommentSection";
 
 
 const PostPage = () => {
@@ -13,6 +13,7 @@ const PostPage = () => {
     return (
         <div className="post-wrapper">
             <Post post={{ ...data, detailed: true }} />
+            <CommentSection id={id} />
         </div>
     )
 }

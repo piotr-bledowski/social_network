@@ -35,6 +35,8 @@ def index(request):
         "Like a post": "/like_post/<int:post_id>",
         "Unlike a post": "/unlike_post/<int:post_id>",
         "Is this post liked by current user?": "/is_liked/<int:post_id>",
+        "Get comments for a post": "/get_comments/<int:post_id>",
+        "Get replies for a comment": "/get_replies/<int:comment_id>",
     })
 
 
@@ -117,5 +119,17 @@ def is_liked(request, username, id):
         post = Post.objects.get(id=id)
         PostLike.objects.get(user=user, post=post)
         return Response({"liked": "yes"})
-    except PostLike.DoesNotExist:
+    except PostLike.DoesNotExist: # not liked == no record in DB
         return Response({"liked": "no"})
+
+
+@api_view(['GET'])
+def get_comments(request, id):
+    comments = Comment.objects.filter(post=id)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data[::-1])
+
+
+@api_view(['GET'])
+def get_replies(request, id):
+    pass
