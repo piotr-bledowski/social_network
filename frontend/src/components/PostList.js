@@ -11,7 +11,7 @@ const PostList = ({ uri }) => {
     return (
         <div className='post-list'>
             <PostForm />
-            {data.map((post) =>
+            {data.map(post =>
                 <Post post={{ ...post, detailed: false }} />
             )}
         </div>

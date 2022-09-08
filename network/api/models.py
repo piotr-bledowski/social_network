@@ -29,7 +29,7 @@ class Comment(models.Model):
     responses = models.IntegerField(default=0)
 
 
-class CommentResponse(models.Model):
+class Reply(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     author = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     text = models.CharField(max_length=1024, blank=False)
@@ -38,8 +38,21 @@ class CommentResponse(models.Model):
 
 
 class PostLike(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
+class CommentLike(models.Model):
+    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+    comment = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
+class ReplyLike(models.Model):
+    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+    # Django raises an exception when running makemigrations if the field below is non-nullable, absolutely no idea why
+    # (like, it works fine in the previous 2 identical models)
+    # Hence null=True
+    reply = models.ForeignKey(Comment, null=True, on_delete=models.CASCADE)
 
 
 class ProfilePicture(models.Model):

@@ -14,9 +14,9 @@ urlpatterns = [
     path('get_public_posts/', views.get_public_posts),
     path('get_users_posts/<str:username>', views.get_users_posts),
     path('get_group_posts/<int:id>', views.get_group_posts),
-    path('like_post/<str:username>/<int:id>', views.like_post),
-    path('unlike_post/<str:username>/<int:id>', views.unlike_post),
-    path('is_liked/<str:username>/<int:id>', views.is_liked),
+    path('like/<str:type>/<str:username>/<int:id>', views.like),
+    path('unlike/<str:type>/<str:username>/<int:id>', views.unlike),
+    path('is_liked/<str:type>/<str:username>/<int:id>', views.is_liked),
     path('get_comments/<int:id>', views.get_comments),
     path('get_repiles/<int:id>', views.get_replies),
 ]

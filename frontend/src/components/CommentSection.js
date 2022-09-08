@@ -8,9 +8,9 @@ const CommentSection = ({ id }) => {
     console.log(data);
     return (
         <section className="comment-section"> {/* list of comments, each comment has its own list of repiles */}
-            {data.map(commentData => {
+            {data.map(commentData =>
                 <Comment commentData={commentData} />
-            })}
+            )}
         </section>
     )
 }

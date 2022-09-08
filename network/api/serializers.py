@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ProfilePicture, User, Post, Comment, CommentResponse, PostLike
+from .models import ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,20 +29,28 @@ class CommentSerializer(serializers.ModelSerializer):
                   'text', 'date', 'likes', 'responses']
 
 
-class CommentResponseSerializer(serializers.ModelSerializer):
-    comment = CommentSerializer()
-    author = UserSerializer()
+class ReplySerializer(serializers.ModelSerializer):
     class Meta:
-        model = CommentResponse
+        model = Reply
         fields = ['id', 'comment', 'author', 'text', 'date', 'likes']
 
 
-class PostLikesSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-    post = PostSerializer()
+class PostLikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostLike
         fields = ['user', 'post']
+
+
+class CommentLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentLike
+        fields = ['user', 'comment']
+
+
+class ReplyLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReplyLike
+        fields = ['user', 'reply']
 
 
 class ProfilePictureSerializer(serializers.ModelSerializer):

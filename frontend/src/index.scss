@@ -141,7 +141,8 @@ $font-light: #eee;
   .post,
   .flex-container,
   .post-form-div,
-  #img-input {
+  #img-input,
+  .comment {
     background-color: $espresso-secondary;
   }
 
@@ -178,7 +179,8 @@ $font-light: #eee;
   .post,
   .flex-container,
   .post-form-div,
-  #img-input {
+  #img-input,
+  .comment {
     background-color: $cappuccino-secondary;
   }
 
@@ -215,7 +217,8 @@ $font-light: #eee;
   .post,
   .flex-container,
   .post-form-div,
-  #img-input {
+  #img-input,
+  .comment {
     background-color: $latte-secondary;
   }
 
@@ -252,7 +255,8 @@ $font-light: #eee;
   .post,
   .flex-container,
   .post-form-div,
-  #img-input {
+  #img-input,
+  .comment {
     background-color: $yerba-secondary;
   }
 
@@ -478,4 +482,45 @@ $font-light: #eee;
   height: 100%;
   left: 5%;
   position: relative;
+}
+
+.comment-section {
+  position: relative;
+  width: 100%;
+  top: 1rem;
+
+  .comment {
+    position: relative;
+    width: 100%;
+
+    div {
+      position: relative;
+      width: 96%;
+      left: 2%;
+      display: block;
+    }
+
+    .comment-header {
+      height: 1.5rem;
+
+      h4,
+      p {
+        display: inline;
+      }
+
+      p {
+        position: absolute;
+        font-size: small;
+        right: 5%;
+      }
+
+      .comment-author {
+        position: relative;
+      }
+    }
+
+    .comment-text {
+      min-height: 1rem;
+    }
+  }
 }
