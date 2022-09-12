@@ -1,7 +1,9 @@
+import LikeButton from "./buttons/LikeButton";
 
 
 const Comment = ({ commentData }) => {
-    const { author, text, date } = commentData;
+    const { id, author, text, date, likes } = commentData;
+    console.log(commentData)
     return (
         <div className="comment">
             <div className="comment-header">
@@ -12,7 +14,7 @@ const Comment = ({ commentData }) => {
                 <p className="comment-text">{text}</p>
             </div>
             <div className="comment-bottom-bar">
-
+                <LikeButton likeData={{ id: id, likes: likes, type: 'comment' }} />
             </div>
         </div>
     )

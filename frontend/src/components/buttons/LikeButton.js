@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { useFetch, useUser } from "../../utils/hooks";
 
 const LikeButton = ({ likeData }) => {
-    const { id, likes } = likeData;
+    const { id, likes, type } = likeData;
     const [currentLikes, setCurrentLikes] = useState(likes); // Need to do this, because likes above is read-only and has to be changed on click
     const user = useUser();
     const [liked, setLiked] = useState(false);
-    const { data } = useFetch('/api/is_liked/post/' + user + '/' + id); // Even custom hook has to follow the rules, useFetch would throw an error if called inside useEffect
+    const { data } = useFetch(`/api/is_liked/${type}/${user}/${id}`); // Even custom hook has to follow the rules, useFetch would throw an error if called inside useEffect
 
     // Called on first render only, not when the like button is clicked
     useEffect(() => {
@@ -17,14 +17,14 @@ const LikeButton = ({ likeData }) => {
 
     const handleClick = () => {
         if (liked) {
-            fetch('/api/unlike/post/' + user + '/' + id, {
+            fetch(`/api/unlike/${type}/${user}/${id}`, {
                 method: 'DELETE'
             });
             setLiked(false);
             setCurrentLikes(currentLikes - 1);
         }
         else {
-            fetch('/api/like/post/' + user + '/' + id, {
+            fetch(`/api/like/${type}/${user}/${id}`, {
                 method: 'POST'
             });
             setLiked(true);

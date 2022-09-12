@@ -97,10 +97,10 @@ def like(request, type, username, id):
         new_like = PostLikeSerializer(data={'user': username, 'post': id})
     elif type == 'comment':
         element = Comment.objects.get(id=id)
-        new_like = CommentLike(data={'user': username, 'comment': id})
+        new_like = CommentLikeSerializer(data={'user': username, 'comment': id})
     elif type == 'reply':
-        element = Comment.objects.get(id=id)
-        new_like = CommentLike(data={'user': username, 'reply': id})
+        element = Reply.objects.get(id=id)
+        new_like = ReplyLikeSerializer(data={'user': username, 'reply': id})
     else:
         raise Exception
     if new_like.is_valid():

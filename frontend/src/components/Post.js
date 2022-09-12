@@ -16,7 +16,7 @@ const Post = ({ post }) => {
             </div>
             <PostContent data={{ ...post }} />
             <div className="post-bottom-bar">
-                <LikeButton likeData={{ id: id, likes: likes }} />
+                <LikeButton likeData={{ id: id, likes: likes, type: 'post' }} />
                 <a href={'/post/' + id}>
                     <CommentButton comments={comments} />
                 </a>
