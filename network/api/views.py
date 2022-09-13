@@ -143,7 +143,7 @@ def is_liked(request, type, username, id):
         else:
             raise Exception
         return Response({"liked": "yes"})
-    except PostLike.DoesNotExist: # not liked == no record in DB
+    except (PostLike.DoesNotExist, CommentLike.DoesNotExist, ReplyLike.DoesNotExist): # not liked == no record in DB
         return Response({"liked": "no"})
 
 

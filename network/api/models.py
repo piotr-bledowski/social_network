@@ -26,7 +26,7 @@ class Comment(models.Model):
     text = models.CharField(max_length=1024, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
-    responses = models.IntegerField(default=0)
+    replies = models.IntegerField(default=0)
 
 
 class Reply(models.Model):

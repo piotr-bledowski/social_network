@@ -1,9 +1,9 @@
 import LikeButton from "./buttons/LikeButton";
+import CommentButton from "./buttons/CommentButton";
 
 
 const Comment = ({ commentData }) => {
-    const { id, author, text, date, likes } = commentData;
-    console.log(commentData)
+    const { id, author, text, date, likes, replies } = commentData;
     return (
         <div className="comment">
             <div className="comment-header">
@@ -15,6 +15,7 @@ const Comment = ({ commentData }) => {
             </div>
             <div className="comment-bottom-bar">
                 <LikeButton likeData={{ id: id, likes: likes, type: 'comment' }} />
+                <CommentButton data={{ comments: replies, type: 'comment' }} />
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import { faPenNib } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CommentButton = ({ comments }) => {
-
+const CommentButton = ({ data }) => {
+    const { comments, type } = data;
 
     return (
         <button className="comment-button">

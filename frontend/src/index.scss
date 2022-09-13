@@ -497,8 +497,12 @@ $font-light: #eee;
     div {
       position: relative;
       width: 96%;
-      left: 2%;
       display: block;
+    }
+
+    .comment-header,
+    .comment-content {
+      left: 2%;
     }
 
     .comment-header {
