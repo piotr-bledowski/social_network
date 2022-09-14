@@ -17,6 +17,8 @@ urlpatterns = [
     path('like/<str:type>/<str:username>/<int:id>', views.like),
     path('unlike/<str:type>/<str:username>/<int:id>', views.unlike),
     path('is_liked/<str:type>/<str:username>/<int:id>', views.is_liked),
+    path('create_comment/', views.create_comment),
     path('get_comments/<int:id>', views.get_comments),
+    path('create_reply/', views.create_reply),
     path('get_repiles/<int:id>', views.get_replies),
 ]

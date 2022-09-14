@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiPost } from "../utils/helpers";
 import { useUser } from "../utils/hooks";
 
 const PostForm = () => {
@@ -9,23 +10,13 @@ const PostForm = () => {
     const user = useUser();
 
     const handleSubmit = () => {
-        fetch('api/create_post/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                group: null,
-                author: user,
-                title: title,
-                text: text,
-                image: img
-            })
+        apiPost('create_post', {
+            group: null,
+            author: user,
+            title: title,
+            text: text,
+            image: img
         })
-            .then(res => res.json())
-            .then(setResponse);
-
-        console.log(response)
     }
 
     return (
@@ -35,7 +26,7 @@ const PostForm = () => {
                 <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Your post's body" />
                 {/* <input value={img} onChange={(e) => setImg(e.target.value)} id='img-input' type='file' /> */}
                 <input id='img-input' type='file' />
-                <input class='btn-input' type='submit' value='Post' />
+                <input className='btn-input' type='submit' value='Post' />
             </form>
         </div>
     )

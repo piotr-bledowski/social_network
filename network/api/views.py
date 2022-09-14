@@ -35,19 +35,19 @@ def index(request):
         "Like (a post, comment or a reply to a comment)": "/like/<str:type>/<str:username>/<int:id>",
         "Unlike (a post, comment or a reply to a comment)": "/unlike/<str:type>/<str:username>/<int:id>",
         "Is this (post, comment, reply) liked by current user?": "/is_liked/<str:type>/<str:username>/<int:id>",
+        "Create new comment": '/create_comment/',
         "Get comments for a post": "/get_comments/<int:post_id>",
+        "Create new reply": '/create_reply/',
         "Get replies for a comment": "/get_replies/<int:comment_id>",
     })
 
 
 @api_view(['POST'])
 def create_post(request):
-    print(request.data)
     serializer = PostSerializerCreate(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    print(serializer.errors)
     return Response('INVALID POST DATA')
 
 
@@ -147,11 +147,29 @@ def is_liked(request, type, username, id):
         return Response({"liked": "no"})
 
 
+@api_view(['POST'])
+def create_comment(request):
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')
+
+
 @api_view(['GET'])
 def get_comments(request, id):
     comments = Comment.objects.filter(post=id)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data[::-1])
+
+
+@api_view(['POST'])
+def create_reply(request):
+    serializer = ReplySerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')
 
 
 @api_view(['GET'])

@@ -9,3 +9,15 @@ export const shortText = (id, img, text) => {
 
     return <p>{text}</p>
 }
+
+export const apiPost = (uri, data) => {
+    fetch(`/api/${uri}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(res => res.json())
+        .then(res => console.log(res));
+}
