@@ -20,5 +20,5 @@ urlpatterns = [
     path('create_comment/', views.create_comment),
     path('get_comments/<int:id>', views.get_comments),
     path('create_reply/', views.create_reply),
-    path('get_repiles/<int:id>', views.get_replies),
+    path('get_replies/<int:id>', views.get_replies),
 ]
