@@ -6,7 +6,6 @@ const PostForm = () => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [img, setImg] = useState(null);
-    const [response, setResponse] = useState('');
     const user = useUser();
 
     const handleSubmit = () => {

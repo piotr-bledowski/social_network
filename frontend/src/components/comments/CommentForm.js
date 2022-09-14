@@ -5,11 +5,8 @@ import { useUser } from "../../utils/hooks";
 const CommentForm = ({ post }) => {
     const [text, setText] = useState('');
     const user = useUser();
-    const [response, setResponse] = useState('');
 
-    const handleSubmit = () => {
-        apiPost('create_comment', { post: post, author: user, text: text });
-    }
+    const handleSubmit = () => apiPost('create_comment', { post: post, author: user, text: text });
 
     return (
         <div className="comment-form-div">

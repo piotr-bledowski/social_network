@@ -149,6 +149,12 @@ def is_liked(request, type, username, id):
 
 @api_view(['POST'])
 def create_comment(request):
+    # incrementing post's comments counter
+    post = Post.objects.get(id=request.data['post'])
+    post.comments += 1
+    post.save()
+
+    # adding new comment to DB
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -165,6 +171,12 @@ def get_comments(request, id):
 
 @api_view(['POST'])
 def create_reply(request):
+    # incrementing comment's replies counter
+    comment = Comment.objects.get(id=request.data['comment'])
+    comment.replies += 1
+    comment.save()
+
+    # adding new reply to DB
     serializer = ReplySerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

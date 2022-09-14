@@ -142,6 +142,7 @@ $font-light: #eee;
   .flex-container,
   .post-form-div,
   .comment-form-div,
+  .reply-form-div,
   .reply,
   #img-input,
   .comment {
@@ -182,6 +183,7 @@ $font-light: #eee;
   .flex-container,
   .post-form-div,
   .comment-form-div,
+  .reply-form-div,
   .reply,
   #img-input,
   .comment {
@@ -222,6 +224,7 @@ $font-light: #eee;
   .flex-container,
   .post-form-div,
   .comment-form-div,
+  .reply-form-div,
   .reply,
   #img-input,
   .comment {
@@ -262,6 +265,7 @@ $font-light: #eee;
   .flex-container,
   .post-form-div,
   .comment-form-div,
+  .reply-form-div,
   .reply,
   #img-input,
   .comment {
@@ -448,7 +452,8 @@ $font-light: #eee;
 }
 
 .post-form-div,
-.comment-form-div {
+.comment-form-div,
+.reply-form-div {
   position: relative;
   top: 2.5vh;
   min-height: 10rem;
@@ -554,6 +559,7 @@ $font-light: #eee;
     position: relative;
     width: 100%;
     margin-top: 1rem;
+    top: 1.5rem;
   }
 
   .reply-header,

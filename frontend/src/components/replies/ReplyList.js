@@ -1,5 +1,6 @@
 import { useFetch } from '../../utils/hooks';
 import Reply from './Reply';
+import ReplyForm from './ReplyForm';
 
 const ReplyList = ({ uri, commentId }) => {
     const { loading, data, error } = useFetch(uri);
@@ -9,6 +10,7 @@ const ReplyList = ({ uri, commentId }) => {
 
     return (
         <div id={`reply-list-${commentId}`} className='reply-list'>
+            <ReplyForm comment={commentId} />
             {data.map(reply =>
                 <Reply reply={{ ...reply }} />
             )}
