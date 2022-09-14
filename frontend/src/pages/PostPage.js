@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useFetch } from "../utils/hooks";
-import Post from "../components/Post";
-import CommentSection from "../components/CommentSection";
+import Post from "../components/posts/Post";
+import CommentSection from "../components/comments/CommentSection";
 
 
 const PostPage = () => {

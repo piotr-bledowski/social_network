@@ -174,4 +174,6 @@ def create_reply(request):
 
 @api_view(['GET'])
 def get_replies(request, id):
-    pass
+    replies = Reply.objects.filter(comment=id)
+    serializer = ReplySerializer(replies, many=True)
+    return Response(serializer.data[::-1])

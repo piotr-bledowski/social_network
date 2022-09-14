@@ -1,4 +1,4 @@
-import { useFetch } from '../utils/hooks';
+import { useFetch } from '../../utils/hooks';
 import Post from './Post';
 import PostForm from './PostForm';
 

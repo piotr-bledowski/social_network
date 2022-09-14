@@ -1,4 +1,4 @@
-import { useFetch } from "../utils/hooks";
+import { useFetch } from "../../utils/hooks";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 

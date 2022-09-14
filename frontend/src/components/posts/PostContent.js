@@ -1,4 +1,4 @@
-import { shortText } from "../utils/helpers"
+import { shortText } from "../../utils/helpers"
 
 const PostContent = ({ data }) => {
     const { id, img, text, detailed } = data;

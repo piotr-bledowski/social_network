@@ -1,5 +1,5 @@
-import CommentButton from "./buttons/CommentButton";
-import LikeButton from "./buttons/LikeButton";
+import CommentButton from "../buttons/CommentButton";
+import LikeButton from "../buttons/LikeButton";
 import PostContent from "./PostContent";
 
 // The post displayed on the feed with main text shortened as nesessary and no comments displayed

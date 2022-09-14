@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { apiPost } from "../utils/helpers";
-import { useUser } from "../utils/hooks";
+import { apiPost } from "../../utils/helpers";
+import { useUser } from "../../utils/hooks";
 
 const PostForm = () => {
     const [title, setTitle] = useState('');
