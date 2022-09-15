@@ -6,6 +6,16 @@ import sys
 sys.path.append('../network')
 
 
+# Where to upload profile pics
+def pfp_upload_to(instance, filename):
+    return f'profile_pics/{filename}'
+
+
+# Where to upload post pics
+def post_upload_to(instance, filename):
+    return f'post_pics/{filename}'
+
+
 # Create your models here.
 
 
@@ -14,7 +24,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     text = models.CharField(max_length=2048)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='post_pics', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     likes = models.IntegerField(default=0, blank=True)
     comments = models.IntegerField(default=0, blank=True)
@@ -57,4 +67,14 @@ class ReplyLike(models.Model):
 
 class ProfilePicture(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    picture = models.ImageField(null=True, blank=True)
+    picture = models.ImageField(upload_to='profile_pics', default='profile_pics/default.jpg')
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+    creator = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+
+
+class GroupMembers(models.Model):
+    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, to_field='name', on_delete=models.CASCADE)

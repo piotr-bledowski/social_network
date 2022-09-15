@@ -8,13 +8,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['username']
 
 
-class PostSerializerCreate(serializers.ModelSerializer):
-    class Meta:
-        model = Post
-        fields = ['group', 'author', 'title',
-                  'text', 'image']
-
-
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post

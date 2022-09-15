@@ -23,7 +23,7 @@ function App() {
           <span className='feed'>
             <Routes>
               <Route path='/' element={<HomePage />} />
-              <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/profile/:user' element={<ProfilePage />} />
               <Route path='/post/:id' element={<PostPage />} />
             </Routes>
           </span>
