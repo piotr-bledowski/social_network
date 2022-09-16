@@ -21,4 +21,6 @@ urlpatterns = [
     path('get_comments/<int:id>', views.get_comments),
     path('create_reply/', views.create_reply),
     path('get_replies/<int:id>', views.get_replies),
+    path('set_profile_pic/<str:username>', views.set_profile_pic),
+    path('get_profile_pic/<str:username>', views.get_profile_pic),
 ]

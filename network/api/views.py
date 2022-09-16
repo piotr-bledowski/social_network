@@ -40,6 +40,8 @@ def index(request):
         "Get comments for a post": "/get_comments/<int:post_id>",
         "Create new reply": '/create_reply/',
         "Get replies for a comment": "/get_replies/<int:comment_id>",
+        "Set profile picture": '/set_profile_pic/<str:username>',
+        "Get profile picture": '/get_profile_pic/<str:username>',
     })
 
 
@@ -199,19 +201,18 @@ def get_replies(request, id):
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
-def upload_profile_pic(request):
+def set_profile_pic(request):
     pass
 
 
 @api_view(['GET'])
-def get_profile_pic(request, user):
+def get_profile_pic(request, username):
     try:
-        pic = ProfilePicture.objects.get(user=user)
+        pic = ProfilePicture.objects.get(user=username)
         serializer = ProfilePictureSerializer(pic)
-        return Response(serializer.data)
     # since User creation is handled by Django, we add the deafult profile pic when it needs to be displayed for the first time
     except ProfilePicture.DoesNotExist:
-        default_pic = ProfilePicture.objects.create(user=user)
-        default_pic.save()
-        serializer = ProfilePictureSerializer(default_pic)
-        return Response(serializer.data)
+        serializer = ProfilePictureSerializer(data={'user': username})
+        if serializer.is_valid():
+            serializer.save()
+    return Response(serializer.data)

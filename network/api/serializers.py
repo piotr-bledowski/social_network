@@ -47,7 +47,6 @@ class ReplyLikeSerializer(serializers.ModelSerializer):
 
 
 class ProfilePictureSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
     class Meta:
         model = ProfilePicture
         fields = ['user', 'picture']

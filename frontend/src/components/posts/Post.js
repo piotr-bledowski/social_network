@@ -1,3 +1,4 @@
+import { useFetch } from "../../utils/hooks";
 import CommentButton from "../buttons/CommentButton";
 import LikeButton from "../buttons/LikeButton";
 import PostContent from "./PostContent";
@@ -6,6 +7,10 @@ import PostContent from "./PostContent";
 
 const Post = ({ post }) => {
     const { id, author, title, date, likes, comments } = post;
+
+    const { data } = useFetch(`/api/get_profile_pic/${author}`);
+
+    console.log(data);
 
     return (
         <div className="post">

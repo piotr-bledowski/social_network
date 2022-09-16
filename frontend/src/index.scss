@@ -600,3 +600,10 @@ $font-light: #eee;
   margin-right: auto;
   max-width: 100%;
 }
+
+.profile-pic {
+  display: inline;
+  position: relative;
+  max-height: 2rem;
+  border-radius: 50%;
+}
