@@ -67,7 +67,7 @@ class ReplyLike(models.Model):
 
 class ProfilePicture(models.Model):
     user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to=pfp_upload_to, default='profile_pics/default.jpg', blank=True)
+    picture = models.ImageField(upload_to=pfp_upload_to, default='profile_pics/default.png', blank=True)
 
 
 class Group(models.Model):

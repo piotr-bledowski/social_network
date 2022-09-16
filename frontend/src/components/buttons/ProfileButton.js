@@ -4,7 +4,7 @@ const ProfileButton = () => {
     const user = useUser();
 
     return (
-        <a id='profile-link' href='profile'>
+        <a id='profile-link' href={'/profile/' + user}>
             <button className='inner-btn'>
                 <h3>{user}</h3>
             </button>
