@@ -174,7 +174,7 @@ def create_comment(request):
 def get_comments(request, id):
     comments = Comment.objects.filter(post=id)
     serializer = CommentSerializer(comments, many=True)
-    return Response(serializer.data[::-1])
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -196,7 +196,7 @@ def create_reply(request):
 def get_replies(request, id):
     replies = Reply.objects.filter(comment=id)
     serializer = ReplySerializer(replies, many=True)
-    return Response(serializer.data[::-1])
+    return Response(serializer.data)
 
 
 @api_view(['POST'])

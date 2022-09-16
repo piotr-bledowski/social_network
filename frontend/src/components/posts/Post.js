@@ -4,8 +4,6 @@ import LikeButton from "../buttons/LikeButton";
 import PostContent from "./PostContent";
 import PostProfileLink from "./PostProfileLink";
 
-// The post displayed on the feed with main text shortened as nesessary and no comments displayed
-
 const Post = ({ post }) => {
     const { id, author, title, date, likes, comments } = post;
 

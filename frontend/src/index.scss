@@ -137,6 +137,16 @@ $font-light: #eee;
     background-color: $espresso-primary;
   }
 
+  .profile-page-header {
+    img {
+      border: 1rem solid $espresso-secondary;
+    }
+  }
+
+  .profile-pic {
+    border: 0.2rem solid $espresso-primary;
+  }
+
   .side-bar,
   .post,
   .flex-container,
@@ -176,6 +186,16 @@ $font-light: #eee;
   .background,
   .main {
     background-color: $cappuccino-primary;
+  }
+
+  .profile-page-header {
+    img {
+      border: 1rem solid $cappuccino-secondary;
+    }
+  }
+
+  .profile-pic {
+    border: 0.2rem solid $cappuccino-primary;
   }
 
   .side-bar,
@@ -219,6 +239,16 @@ $font-light: #eee;
     background-color: $latte-primary;
   }
 
+  .profile-page-header {
+    img {
+      border: 1rem solid $latte-secondary;
+    }
+  }
+
+  .profile-pic {
+    border: 0.2rem solid $latte-primary;
+  }
+
   .side-bar,
   .post,
   .flex-container,
@@ -258,6 +288,16 @@ $font-light: #eee;
   .background,
   .main {
     background-color: $yerba-primary;
+  }
+
+  .profile-page-header {
+    img {
+      border: 1rem solid $yerba-secondary;
+    }
+  }
+
+  .profile-pic {
+    border: 0.2rem solid $yerba-primary;
   }
 
   .side-bar,
@@ -383,7 +423,7 @@ $font-light: #eee;
 .post-author {
   display: inline;
   position: relative;
-  left: 2%;
+  left: 3%;
   top: 2%;
 }
 
@@ -604,6 +644,32 @@ $font-light: #eee;
 .profile-pic {
   display: inline;
   position: relative;
-  max-height: 2rem;
+  height: 1.5rem;
   border-radius: 50%;
+  left: 2%;
+  top: 0.6rem;
+}
+
+.profile-page-header {
+  width: 100%;
+  position: relative;
+
+  img,
+  h1 {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  img {
+    width: 25%;
+    border-radius: 50%;
+    margin-top: 2rem;
+  }
+
+  h1 {
+    margin-top: 1rem;
+    text-align: center;
+  }
 }
