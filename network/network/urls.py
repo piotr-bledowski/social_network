@@ -24,6 +24,8 @@ urlpatterns = [
     path('', include('social_network.urls')),
     path('api/', include('api.urls')),
     re_path(r'^(?:.*)/?$', views.index), # the funny regex catches all React Router URLs, otherwise Django would throw an error
+    # ! this is basically the same as above, BUT using path instead of re_path allows media to be served, however it does not allow React Routes, so both are needed
+    path(r'^(?:.*)/?$', views.index),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
