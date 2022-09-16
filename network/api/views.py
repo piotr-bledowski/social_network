@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
-from .models import User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import PostLikeSerializer, CommentLikeSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
+from .models import ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .serializers import PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
@@ -44,7 +44,7 @@ def index(request):
 
 
 @api_view(['POST'])
-@parser_classes([MultiPartParser, FormParser])
+@parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
 def create_post(request):
     data = request.data.dict()
     for key in data.keys():
@@ -195,3 +195,23 @@ def get_replies(request, id):
     replies = Reply.objects.filter(comment=id)
     serializer = ReplySerializer(replies, many=True)
     return Response(serializer.data[::-1])
+
+
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
+def upload_profile_pic(request):
+    pass
+
+
+@api_view(['GET'])
+def get_profile_pic(request, user):
+    try:
+        pic = ProfilePicture.objects.get(user=user)
+        serializer = ProfilePictureSerializer(pic)
+        return Response(serializer.data)
+    # since User creation is handled by Django, we add the deafult profile pic when it needs to be displayed for the first time
+    except ProfilePicture.DoesNotExist:
+        default_pic = ProfilePicture.objects.create(user=user)
+        default_pic.save()
+        serializer = ProfilePictureSerializer(default_pic)
+        return Response(serializer.data)

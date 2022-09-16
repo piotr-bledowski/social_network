@@ -592,3 +592,11 @@ $font-light: #eee;
     min-height: 1rem;
   }
 }
+
+.post-img {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
