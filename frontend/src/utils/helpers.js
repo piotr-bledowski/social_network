@@ -10,11 +10,11 @@ export const shortText = (id, img, text) => {
     return <p>{text}</p>
 }
 
-export const apiPost = (uri, data) => {
+export const apiPost = (uri, type, data) => {
     fetch(`/api/${uri}/`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': type
         },
         body: JSON.stringify(data)
     })

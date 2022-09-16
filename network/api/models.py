@@ -24,7 +24,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     text = models.CharField(max_length=2048)
-    image = models.ImageField(upload_to='post_pics', null=True, blank=True)
+    image = models.ImageField(upload_to=post_upload_to, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     likes = models.IntegerField(default=0, blank=True)
     comments = models.IntegerField(default=0, blank=True)

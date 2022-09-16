@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 from .models import User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 from .serializers import PostLikeSerializer, CommentLikeSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 
 # JWT views (customizing information the token contains, such as username)
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -43,8 +44,13 @@ def index(request):
 
 
 @api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
 def create_post(request):
-    serializer = PostSerializer(data=request.data)
+    data = request.data.dict()
+    for key in data.keys():
+        if data[key] == 'null':
+            data[key] = None
+    serializer = PostSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
