@@ -71,7 +71,7 @@ def get_users_posts(request, username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(author=user)
     serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data[::-1])
 
 
 @api_view(['GET'])
@@ -201,8 +201,13 @@ def get_replies(request, id):
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
-def set_profile_pic(request):
-    pass
+def set_profile_pic(request, username):
+    data = request.data.dict()
+    pic = ProfilePicture.objects.get(user=username)
+    pic.picture = data['picture']
+    pic.save()
+    return Response('profile picture uploaded')
+
 
 
 @api_view(['GET'])

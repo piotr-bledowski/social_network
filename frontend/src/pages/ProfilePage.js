@@ -11,7 +11,7 @@ const ProfilePage = () => {
     return (
         <>
             <ProfilePageHeader user={user} my={my} />
-            <PostList uri={`/api/get_users_posts/${user}`} displayForm={my ? true : false} />
+            <PostList uri={`/api/get_users_posts/${user}`} displayForm={my} />
         </>
     )
 }

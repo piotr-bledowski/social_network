@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const shortText = (id, img, text) => {
     if (img) {
         if (text.length > 128) return <p>{text.slice(0, 128)}... <a href={'post/' + id}>Full post</a></p>
@@ -20,4 +22,18 @@ export const apiPost = (uri, type, data) => {
     })
         .then(res => res.json())
         .then(res => console.log(res));
+}
+
+// api POST request including files using axios
+export const imgApiPost = (uri, formData) => {
+    axios.post(
+        `/api/${uri}`,
+        formData,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+    ).then(res => console.log(res))
+        .catch(error => console.log(error));
 }

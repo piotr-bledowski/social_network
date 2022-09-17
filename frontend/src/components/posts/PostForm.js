@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { apiPost } from "../../utils/helpers";
 import { useUser } from "../../utils/hooks";
-import axios from 'axios';
+import { imgApiPost } from "../../utils/helpers";
 
 
 const PostForm = () => {
@@ -18,16 +17,7 @@ const PostForm = () => {
         formData.append('text', text);
         formData.append('image', img);
 
-        axios.post(
-            '/api/create_post/',
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-        ).then(res => console.log(res))
-            .catch(error => console.log(error));
+        imgApiPost('create_post/', formData);
     }
 
     return (

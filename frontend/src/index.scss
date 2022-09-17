@@ -133,7 +133,8 @@ $font-light: #eee;
   button:hover,
   .btn-input:hover,
   .background,
-  .main {
+  .main,
+  #profile-img-input {
     background-color: $espresso-primary;
   }
 
@@ -184,7 +185,8 @@ $font-light: #eee;
   button:hover,
   .btn-input:hover,
   .background,
-  .main {
+  .main,
+  #profile-img-input {
     background-color: $cappuccino-primary;
   }
 
@@ -235,7 +237,8 @@ $font-light: #eee;
   button:hover,
   .btn-input:hover,
   .background,
-  .main {
+  .main,
+  #profile-img-input {
     background-color: $latte-primary;
   }
 
@@ -286,7 +289,8 @@ $font-light: #eee;
   button:hover,
   .btn-input:hover,
   .background,
-  .main {
+  .main,
+  #profile-img-input {
     background-color: $yerba-primary;
   }
 
@@ -400,8 +404,7 @@ $font-light: #eee;
   position: relative;
   width: 100%;
   min-height: 15%;
-  display: block;
-  margin-top: 5%;
+  margin-top: 2.5rem;
   z-index: 0;
 }
 
@@ -644,10 +647,11 @@ $font-light: #eee;
 .profile-pic {
   display: inline;
   position: relative;
-  height: 1.5rem;
+  height: 2vw;
+  width: 2vw;
   border-radius: 50%;
   left: 2%;
-  top: 0.6rem;
+  top: 0.7rem;
 }
 
 .profile-page-header {
@@ -663,13 +667,34 @@ $font-light: #eee;
   }
 
   img {
-    width: 25%;
+    width: 15vw;
     border-radius: 50%;
     margin-top: 2rem;
+    height: 15vw; // making it the same as width
   }
 
   h1 {
     margin-top: 1rem;
     text-align: center;
+  }
+
+  form {
+    input {
+      display: block;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1rem;
+    }
+
+    #profile-img-input {
+      left: 3%;
+    }
+
+    .btn-input {
+      height: 2rem;
+      width: 30%;
+      font-size: larger;
+    }
   }
 }
