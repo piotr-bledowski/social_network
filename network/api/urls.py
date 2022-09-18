@@ -23,4 +23,8 @@ urlpatterns = [
     path('get_replies/<int:id>', views.get_replies),
     path('set_profile_pic/<str:username>', views.set_profile_pic),
     path('get_profile_pic/<str:username>', views.get_profile_pic),
+    path('create_group/', views.create_group),
+    path('get_group/<str:group_name>', views.get_group),
+    path('set_group_pic/<str:group_name>', views.set_group_pic),
+    path('get_users_groups/<str:username>', views.get_users_groups),
 ]

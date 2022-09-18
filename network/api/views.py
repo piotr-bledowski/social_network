@@ -1,8 +1,10 @@
+from urllib.request import Request
 from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
-from .models import ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
+
+from .models import Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .serializers import GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
@@ -42,6 +44,10 @@ def index(request):
         "Get replies for a comment": "/get_replies/<int:comment_id>",
         "Set profile picture": '/set_profile_pic/<str:username>',
         "Get profile picture": '/get_profile_pic/<str:username>',
+        "Create group": '/create_group/',
+        "Get group": '/get_group/<str:group_name>',
+        "Upload group's picture": '/set_group_pic/<str:group_name>',
+        "Get user's groups": '/get_users_groups/<str:username>',
     })
 
 
@@ -221,3 +227,49 @@ def get_profile_pic(request, username):
         if serializer.is_valid():
             serializer.save()
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
+def create_group(request):
+    # Now, here we can set the group's default pic on creation, since we actually control it, not some Django's default code
+    # It's set automatically though, None means default pic being asigned
+    data = request.data.dict()
+    for key in data.keys():
+        if data[key] == 'null':
+            data[key] = None
+    serializer = GroupSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')
+
+
+@api_view(['GET'])
+def get_group(request, group_name):
+    group = Group.objects.get(name=group_name)
+    serializer = GroupSerializer(group)
+    return Request(serializer.data)
+
+
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
+def set_group_pic(request, group_name):
+    data = request.data.dict()
+    group = Group.objects.get(name=group_name)
+    group.picture = data['picture']
+    group.save()
+    return Response('group picture uploaded')
+
+
+@api_view(['GET'])
+def get_users_groups(request, username):
+    # get names of user's groups
+    groups = GroupMember.objects.filter(user=username)
+    serializer = GroupMemberSerializer(groups, many=True)
+    group_names = map(lambda x: x.group, serializer.data)
+
+    # use the names to get full info on the groups
+    groups = Group.objects.filter(name__in=group_names)
+    seralizer = GroupSerializer(groups, namy=True)
+    return Response(seralizer.data)

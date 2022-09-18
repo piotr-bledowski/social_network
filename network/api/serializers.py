@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .models import Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -50,3 +50,15 @@ class ProfilePictureSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfilePicture
         fields = ['user', 'picture']
+    
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['name', 'creator', 'picture']
+
+
+class GroupMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupMember
+        fields = ['user', 'group']

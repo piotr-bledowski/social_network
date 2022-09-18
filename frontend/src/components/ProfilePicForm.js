@@ -7,7 +7,7 @@ const ProfilePicForm = ({ user }) => {
     const handleSubmit = () => {
         let formData = new FormData();
         formData.append('picture', img);
-        if (img) imgApiPost(`set_profile_pic/${user}`, formData); // prevent request from being made when no image is selected
+        if (img) imgApiRequest(`set_profile_pic/${user}`, formData); // prevent request from being made when no image is selected
     }
 
     return (

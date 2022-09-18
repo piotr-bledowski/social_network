@@ -16,11 +16,21 @@ def post_upload_to(instance, filename):
     return f'post_pics/{filename}'
 
 
+# Where to upload group pics
+def group_upload_to(instance, filename):
+    return f'group_pics/{filename}'
+
+
 # Create your models here.
+
+class Group(models.Model):
+    name = models.CharField(max_length=64, unique=True)
+    creator = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to=group_upload_to, default='default_group.png', blank=True)
 
 
 class Post(models.Model):
-    group = models.IntegerField(null=True, blank=True)
+    group = models.ForeignKey(Group, to_field='name', on_delete=models.CASCADE, null=True, blank=True)
     author = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     text = models.CharField(max_length=2048)
@@ -66,15 +76,10 @@ class ReplyLike(models.Model):
 
 
 class ProfilePicture(models.Model):
-    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, unique=True)
     picture = models.ImageField(upload_to=pfp_upload_to, default='profile_pics/default.png', blank=True)
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=64, unique=True)
-    creator = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
-
-
-class GroupMembers(models.Model):
+class GroupMember(models.Model):
     user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     group = models.ForeignKey(Group, to_field='name', on_delete=models.CASCADE)
