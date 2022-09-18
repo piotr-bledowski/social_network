@@ -27,6 +27,7 @@ class Group(models.Model):
     name = models.CharField(max_length=64, unique=True)
     creator = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     picture = models.ImageField(upload_to=group_upload_to, default='default_group.png', blank=True)
+    members = models.IntegerField(default=0, blank=True)
 
 
 class Post(models.Model):

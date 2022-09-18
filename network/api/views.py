@@ -34,7 +34,8 @@ def index(request):
         "Edit a specific post": '/edit_post/<int:post_id>',
         "Get all posts": '/get_all_posts/',
         "Get user's posts": '/get_users_posts/<str:username>',
-        "Get all public posts": 'get_public_posts', # to delete later
+        "Get all public posts": '/get_public_posts/', # to delete later
+        "Get group's posts": '/get_group_posts/<str:group_name>',
         "Like (a post, comment or a reply to a comment)": "/like/<str:type>/<str:username>/<int:id>",
         "Unlike (a post, comment or a reply to a comment)": "/unlike/<str:type>/<str:username>/<int:id>",
         "Is this (post, comment, reply) liked by current user?": "/is_liked/<str:type>/<str:username>/<int:id>",
@@ -48,6 +49,8 @@ def index(request):
         "Get group": '/get_group/<str:group_name>',
         "Upload group's picture": '/set_group_pic/<str:group_name>',
         "Get user's groups": '/get_users_groups/<str:username>',
+        "Join group": 'join_group/<str:username>/<str:group_name>',
+        "Leave group": 'leave_group/<str:username>/<str:group_name>',
     })
 
 
@@ -100,8 +103,10 @@ def get_public_posts(request):
 
 
 @api_view(['GET'])
-def get_group_posts(request, id):
-    pass
+def get_group_posts(request, group_name):
+    posts = Post.objects.filter(group=group_name)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data[::-1])
 
 
 @api_view(['POST'])
@@ -273,3 +278,32 @@ def get_users_groups(request, username):
     groups = Group.objects.filter(name__in=group_names)
     seralizer = GroupSerializer(groups, namy=True)
     return Response(seralizer.data)
+
+
+@api_view(['POST'])
+def join_group(request, username, group_name):
+    # Create new membership record
+    new_member = GroupMemberSerializer(data={'user': username, 'group': group_name})
+    if new_member.is_valid():
+        new_member.save()
+
+        # Increment group's member count
+        group = Group(name=group_name)
+        group.members += 1
+        group.save()
+        
+        return Response('Joined group successfully')
+    return Response('Something went wrong while trying to join the group')
+
+
+@api_view(['DELETE'])
+def leave_group(request, username, group_name):
+    # Decrement group's member count
+    group = Group(name=group_name)
+    group.members -= 1
+    group.save()
+
+    # Find and delete membership record
+    record = GroupMember(user=username, group=group_name)
+    record.delete()
+    return Response('Left group successfully')

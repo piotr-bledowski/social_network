@@ -55,7 +55,7 @@ class ProfilePictureSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ['name', 'creator', 'picture']
+        fields = ['name', 'creator', 'picture', 'members']
 
 
 class GroupMemberSerializer(serializers.ModelSerializer):
