@@ -6,14 +6,13 @@ import PostList from '../components/posts/PostList';
 
 
 const GroupPage = () => {
-    const [groupData, setGroupData] = useState(null);
-    const { groupName } = useParams();
-    setGroupData(useFetch('/api/get_group/' + groupName).data);
+    const { name } = useParams();
+    const groupData = useFetch('/api/get_group/' + name).data;
 
     return (
         <>
             <GroupPageHeader group={groupData} />
-            <PostList uri={'/api/get_group_posta/' + groupName} />
+            <PostList uri={'/api/get_group_posts/' + name} />
         </>
     )
 }

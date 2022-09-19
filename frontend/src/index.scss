@@ -144,7 +144,8 @@ $font-light: #eee;
     }
   }
 
-  .profile-pic {
+  .profile-pic,
+  .menu-group-pic {
     border: 0.2rem solid $espresso-primary;
   }
 
@@ -196,7 +197,8 @@ $font-light: #eee;
     }
   }
 
-  .profile-pic {
+  .profile-pic,
+  .menu-group-pic {
     border: 0.2rem solid $cappuccino-primary;
   }
 
@@ -248,7 +250,8 @@ $font-light: #eee;
     }
   }
 
-  .profile-pic {
+  .profile-pic,
+  .menu-group-pic {
     border: 0.2rem solid $latte-primary;
   }
 
@@ -300,7 +303,8 @@ $font-light: #eee;
     }
   }
 
-  .profile-pic {
+  .profile-pic,
+  .menu-group-pic {
     border: 0.2rem solid $yerba-primary;
   }
 
@@ -696,5 +700,77 @@ $font-light: #eee;
       width: 30%;
       font-size: larger;
     }
+  }
+}
+
+.form-display-btn {
+  display: block;
+  position: relative;
+  height: 4rem;
+  width: 40%;
+  left: 30%;
+  top: 1rem;
+}
+
+.group {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3rem;
+
+  a {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    button {
+      position: relative;
+      height: 100%;
+      width: 100%;
+
+      img,
+      h3 {
+        display: inline;
+        position: relative;
+      }
+
+      img {
+        border-radius: 50%;
+        height: 2rem;
+        left: -5%;
+      }
+
+      h3 {
+        bottom: 25%;
+      }
+    }
+  }
+}
+
+.group-page-header {
+  display: block;
+  width: 100%;
+  position: relative;
+
+  img,
+  h1,
+  h3 {
+    display: block;
+    position: relative;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1,
+  h3 {
+    margin-top: 1rem;
+    text-align: center;
   }
 }

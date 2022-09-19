@@ -254,7 +254,7 @@ def create_group(request):
 def get_group(request, group_name):
     group = Group.objects.get(name=group_name)
     serializer = GroupSerializer(group)
-    return Request(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -272,11 +272,11 @@ def get_users_groups(request, username):
     # get names of user's groups
     groups = GroupMember.objects.filter(user=username)
     serializer = GroupMemberSerializer(groups, many=True)
-    group_names = map(lambda x: x.group, serializer.data)
+    group_names = map(lambda x: x['group'], serializer.data)
 
     # use the names to get full info on the groups
     groups = Group.objects.filter(name__in=group_names)
-    seralizer = GroupSerializer(groups, namy=True)
+    seralizer = GroupSerializer(groups, many=True)
     return Response(seralizer.data)
 
 
