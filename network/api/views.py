@@ -246,6 +246,7 @@ def create_group(request):
     serializer = GroupSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
+        
         return Response(serializer.data)
     return Response('INVALID POST DATA')
 

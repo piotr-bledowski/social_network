@@ -134,11 +134,13 @@ $font-light: #eee;
   .btn-input:hover,
   .background,
   .main,
-  #profile-img-input {
+  #profile-img-input,
+  #group-img-input {
     background-color: $espresso-primary;
   }
 
-  .profile-page-header {
+  .profile-page-header,
+  .group-page-header {
     img {
       border: 1rem solid $espresso-secondary;
     }
@@ -187,11 +189,13 @@ $font-light: #eee;
   .btn-input:hover,
   .background,
   .main,
-  #profile-img-input {
+  #profile-img-input,
+  #group-img-input {
     background-color: $cappuccino-primary;
   }
 
-  .profile-page-header {
+  .profile-page-header,
+  .group-page-header {
     img {
       border: 1rem solid $cappuccino-secondary;
     }
@@ -240,11 +244,13 @@ $font-light: #eee;
   .btn-input:hover,
   .background,
   .main,
-  #profile-img-input {
+  #profile-img-input,
+  #group-img-input {
     background-color: $latte-primary;
   }
 
-  .profile-page-header {
+  .profile-page-header,
+  .group-page-header {
     img {
       border: 1rem solid $latte-secondary;
     }
@@ -293,11 +299,13 @@ $font-light: #eee;
   .btn-input:hover,
   .background,
   .main,
-  #profile-img-input {
+  #profile-img-input,
+  #group-img-input {
     background-color: $yerba-primary;
   }
 
-  .profile-page-header {
+  .profile-page-header,
+  .group-page-header {
     img {
       border: 1rem solid $yerba-secondary;
     }
@@ -716,7 +724,7 @@ $font-light: #eee;
   position: relative;
   display: block;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
 
   a {
     position: relative;
@@ -736,7 +744,8 @@ $font-light: #eee;
 
       img {
         border-radius: 50%;
-        height: 2rem;
+        height: 2vw;
+        width: 2vw;
         left: -5%;
       }
 
@@ -772,5 +781,80 @@ $font-light: #eee;
   h3 {
     margin-top: 1rem;
     text-align: center;
+  }
+}
+
+.group-form-div {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 8rem;
+
+  form {
+    position: relative;
+    width: 90%;
+    margin-left: 5%;
+
+    input {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    #name-input {
+      height: 1.5rem;
+    }
+
+    #img-input {
+      width: 13rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-input {
+      height: 2rem;
+      font-size: larger;
+    }
+  }
+}
+
+.group-form-display-btn {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 4rem;
+}
+
+.group-list {
+  position: relative;
+  display: block;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.group-pic-form {
+  display: block;
+  position: relative;
+
+  input {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+  }
+
+  #group-img-input {
+    left: 3%;
+  }
+
+  .btn-input {
+    height: 2rem;
+    width: 30%;
+    font-size: larger;
   }
 }

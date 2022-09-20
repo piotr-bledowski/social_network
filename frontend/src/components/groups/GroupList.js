@@ -9,6 +9,7 @@ const GroupList = ({ uri }) => {
 
     return (
         <div className="group-list">
+            <h2>Your groups</h2>
             {data.map(group =>
                 <Group group={{ ...group }} />
             )}
