@@ -3,6 +3,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
+from .helpers import add_member
+
 from .models import Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 from .serializers import GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -246,6 +248,8 @@ def create_group(request):
     serializer = GroupSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
+
+        add_member(data['creator'], data['name'])
         
         return Response(serializer.data)
     return Response('INVALID POST DATA')
@@ -283,18 +287,7 @@ def get_users_groups(request, username):
 
 @api_view(['POST'])
 def join_group(request, username, group_name):
-    # Create new membership record
-    new_member = GroupMemberSerializer(data={'user': username, 'group': group_name})
-    if new_member.is_valid():
-        new_member.save()
-
-        # Increment group's member count
-        group = Group(name=group_name)
-        group.members += 1
-        group.save()
-        
-        return Response('Joined group successfully')
-    return Response('Something went wrong while trying to join the group')
+    return add_member(username, group_name)
 
 
 @api_view(['DELETE'])
