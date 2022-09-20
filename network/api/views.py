@@ -51,8 +51,9 @@ def index(request):
         "Get group": '/get_group/<str:group_name>',
         "Upload group's picture": '/set_group_pic/<str:group_name>',
         "Get user's groups": '/get_users_groups/<str:username>',
-        "Join group": 'join_group/<str:username>/<str:group_name>',
-        "Leave group": 'leave_group/<str:username>/<str:group_name>',
+        "Join group": '/join_group/<str:username>/<str:group_name>',
+        "Leave group": '/leave_group/<str:username>/<str:group_name>',
+        "Check if user is a member of a group": '/is_member/<str:username>/<str:group_name>',
     })
 
 
@@ -293,11 +294,20 @@ def join_group(request, username, group_name):
 @api_view(['DELETE'])
 def leave_group(request, username, group_name):
     # Decrement group's member count
-    group = Group(name=group_name)
+    group = Group.objects.get(name=group_name)
     group.members -= 1
     group.save()
 
     # Find and delete membership record
-    record = GroupMember(user=username, group=group_name)
+    record = GroupMember.objects.get(user=username, group=group_name)
     record.delete()
     return Response('Left group successfully')
+
+
+@api_view(['GET'])
+def is_member(request, username, group_name):
+    try:
+        member = GroupMember.objects.get(user=username, group=group_name)
+        return Response({'member': 'yes'})
+    except GroupMember.DoesNotExist:
+        return Response({'member': 'no'})

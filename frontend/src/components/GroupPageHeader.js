@@ -1,9 +1,12 @@
 import { useUser } from '../utils/hooks'
+import GroupMemberButton from './buttons/GroupMemberButton';
 import GroupPicForm from './GroupPicForm';
 
-const GroupPageHeader = ({ group }) => {
+const GroupPageHeader = ({ group, member, setMember }) => {
     const { name, creator, picture } = group;
     const user = useUser();
+
+    //console.log(member);
 
     const my = user === creator;
 
@@ -17,6 +20,7 @@ const GroupPageHeader = ({ group }) => {
             <a href={`/profile/${creator}`} >
                 <h3>Initiated by: {creator}</h3>
             </a>
+            <GroupMemberButton member={member} setMember={setMember} user={user} name={name} />
         </section>
     )
 }

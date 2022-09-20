@@ -29,4 +29,5 @@ urlpatterns = [
     path('get_users_groups/<str:username>', views.get_users_groups),
     path('join_group/<str:username>/<str:group_name>', views.join_group),
     path('leave_group/<str:username>/<str:group_name>', views.leave_group),
+    path('is_member/<str:username>/<str:group_name>', views.is_member),
 ]

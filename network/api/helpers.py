@@ -11,7 +11,7 @@ def add_member(user, group):
         new_member.save()
 
         # Increment group's member count
-        group = Group(name=group)
+        group = Group.objects.get(name=group)
         group.members += 1
         group.save()
         
