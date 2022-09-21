@@ -1,6 +1,8 @@
+import { useGroup } from "../../utils/hooks";
 
+const GroupMemberButton = ({ user, name }) => {
+    const { member, setMember } = useGroup();
 
-const GroupMemberButton = ({ member, setMember, user, name }) => {
     const handleClick = () => {
         if (member) {
             fetch(`/api/leave_group/${user}/${name}`, {

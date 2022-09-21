@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GroupPageHeader from "../components/GroupPageHeader";
 import { useFetch, useGroup, useUser } from "../utils/hooks";
@@ -18,8 +18,8 @@ const GroupPage = () => {
 
     return (
         <>
-            <GroupPageHeader group={groupData} member={member} setMember={setMember} />
-            <PostList uri={'/api/get_group_posts/' + name} displayForm={member} />
+            <GroupPageHeader group={groupData} />
+            <PostList uri={'/api/get_group_posts/' + name} displayForm={member} group={name} />
         </>
     )
 }

@@ -3,7 +3,7 @@ import { useUser } from "../../utils/hooks";
 import { imgApiPost } from "../../utils/helpers";
 
 
-const PostForm = () => {
+const PostForm = ({ group }) => {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [img, setImg] = useState(null);
@@ -11,7 +11,7 @@ const PostForm = () => {
 
     const handleSubmit = () => {
         let formData = new FormData();
-        formData.append('group', null);
+        formData.append('group', group);
         formData.append('author', user);
         formData.append('title', title);
         formData.append('text', text);
@@ -26,7 +26,6 @@ const PostForm = () => {
                 <input value={title} onChange={(e) => setTitle(e.target.value)} id='title-input' type='text' placeholder="Your post's title" />
                 <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Your post's body" />
                 <input onChange={(e) => setImg(e.target.files[0])} id='img-input' type='file' />
-                {/* <input id='img-input' type='file' /> */}
                 <input className='btn-input' type='submit' value='Post' />
             </form>
         </div>

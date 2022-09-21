@@ -2,7 +2,7 @@ import { useFetch } from '../../utils/hooks';
 import Post from './Post';
 import PostForm from './PostForm';
 
-const PostList = ({ uri, displayForm }) => {
+const PostList = ({ uri, displayForm, group }) => {
     const { loading, data, error } = useFetch(uri);
 
     if (loading) return <h1>Loading...</h1>;
@@ -11,7 +11,7 @@ const PostList = ({ uri, displayForm }) => {
     return (
         <div className='post-list'>
             {displayForm &&
-                <PostForm /> // only display PostForm in certain circumstances (user's own profile page or homepage / group page)
+                <PostForm group={group} /> // only display PostForm in certain circumstances (user's own profile page or homepage / group page)
             }
             {data.map(post =>
                 <Post post={{ ...post, detailed: false }} />

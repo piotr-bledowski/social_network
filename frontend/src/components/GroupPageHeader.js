@@ -2,7 +2,7 @@ import { useUser } from '../utils/hooks'
 import GroupMemberButton from './buttons/GroupMemberButton';
 import GroupPicForm from './GroupPicForm';
 
-const GroupPageHeader = ({ group, member, setMember }) => {
+const GroupPageHeader = ({ group }) => {
     const { name, creator, picture, members } = group;
     const user = useUser();
 
@@ -21,7 +21,7 @@ const GroupPageHeader = ({ group, member, setMember }) => {
                 <h3>Initiated by: {creator}</h3>
             </a>
             <h3>{members} members</h3>
-            <GroupMemberButton member={member} setMember={setMember} user={user} name={name} />
+            <GroupMemberButton user={user} name={name} />
         </section>
     )
 }
