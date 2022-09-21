@@ -6,7 +6,7 @@ import ProfilePage from './pages/ProfilePage';
 import PostPage from './pages/PostPage';
 import { UserProvider } from './contexts/UserContext';
 import { useTheme } from './utils/hooks'
-import GroupPage from './pages/GroupPage';
+import GroupPageWrapper from './pages/GroupPageWrapper';
 import GroupMenu from './components/groups/GroupMenu';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/profile/:user' element={<ProfilePage />} />
               <Route path='/post/:id' element={<PostPage />} />
-              <Route path='/group/:name' element={<GroupPage />} />
+              <Route path='/group/:name' element={<GroupPageWrapper />} />
             </Routes>
           </span>
           <span className='right-bar side-bar'></span>

@@ -763,7 +763,8 @@ $font-light: #eee;
 
   img,
   h1,
-  h3 {
+  h3,
+  button {
     display: block;
     position: relative;
   }
@@ -781,6 +782,13 @@ $font-light: #eee;
   h3 {
     margin-top: 1rem;
     text-align: center;
+  }
+
+  .group-member-btn {
+    margin-left: auto;
+    margin-right: auto;
+    height: 3rem;
+    width: 10%;
   }
 }
 
