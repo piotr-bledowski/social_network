@@ -9,7 +9,7 @@ const GroupPage = () => {
     const { name } = useParams();
     const user = useUser();
     const groupData = useFetch('/api/get_group/' + name).data;
-    const data = useFetch(`/api/is_member/${user}/${name}`).data.member === 'yes' ? true : false; // this is messy, no idea why it works this way, state won't take the final (actual) value
+    const data = useFetch(`/api/is_member/${user}/${name}`).data.member === 'yes' ? true : false; // useFetch needs to be here, not inside useEffect, cause hook rules
     const { member, setMember } = useGroup();
 
     useEffect(() => {

@@ -542,8 +542,9 @@ $font-light: #eee;
 
     .btn-input {
       height: 2rem;
-      width: 10%;
+      width: 25%;
       font-weight: bold;
+      margin-left: -0.5rem;
     }
   }
 }
@@ -865,4 +866,11 @@ $font-light: #eee;
     width: 30%;
     font-size: larger;
   }
+}
+
+.public-private-button {
+  display: block;
+  position: relative;
+  height: 2rem;
+  width: 20%;
 }

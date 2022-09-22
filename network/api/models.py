@@ -36,6 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=64)
     text = models.CharField(max_length=2048)
     image = models.ImageField(upload_to=post_upload_to, null=True, blank=True)
+    public = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     likes = models.IntegerField(default=0, blank=True)
     comments = models.IntegerField(default=0, blank=True)
@@ -84,3 +85,14 @@ class ProfilePicture(models.Model):
 class GroupMember(models.Model):
     user = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE)
     group = models.ForeignKey(Group, to_field='name', on_delete=models.CASCADE)
+
+
+class Friend(models.Model):
+    user1 = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='user1')
+    user2 = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='user2')
+
+
+class FriendRequest(models.Model):
+    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='reveiver')
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
