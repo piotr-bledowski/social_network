@@ -5,11 +5,13 @@ from rest_framework.response import Response
 
 from .helpers import add_member
 
-from .models import Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
+from .models import FriendRequest, Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
+
+from network.api import serializers
 
 # JWT views (customizing information the token contains, such as username)
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -54,6 +56,10 @@ def index(request):
         "Join group": '/join_group/<str:username>/<str:group_name>',
         "Leave group": '/leave_group/<str:username>/<str:group_name>',
         "Check if user is a member of a group": '/is_member/<str:username>/<str:group_name>',
+        "Get friend requests": '/get_friend_requests/<str:username>',
+        "Send friend request": '/send_friend_request/<str:sender>/<str:receiver>',
+        "Cancel friend request as the sender (or reject as the receiver, same thing)": '/cancel_friend_request/<int:request_id>',
+        "Accept friend request": '/accept_friend_request/<int:request_id>',
     })
 
 
@@ -311,3 +317,38 @@ def is_member(request, username, group_name):
         return Response({'member': 'yes'})
     except GroupMember.DoesNotExist:
         return Response({'member': 'no'})
+
+
+@api_view(['GET'])
+def get_friend_requests(request, username):
+    requests = FriendRequest.objects.filter(receiver=username)
+    serializer = FriendRequestSerializer(requests, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def send_friend_request(request, sender, receiver):
+    serializer = FriendRequestSerializer(data={'sender': sender, 'receiver': receiver})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(f'Friend request sent to {receiver}')
+    return Response('Something went wrong while sending the friend request')
+
+
+@api_view(['DELETE'])
+def cancel_friend_request(request, request_id):
+    request_to_cancel = FriendRequest.objects.get(id=request_id)
+    request_to_cancel.delete()
+    return Response(f'Friend request {request_id} cancelled successfully')
+
+
+@api_view(['POST'])
+def accept_friend_request(request, request_id):
+    friend_request = FriendRequest.objects.get(id=request_id)
+    data = friend_request.data
+    serializer = FriendSerializer(data={'user1': data['sender'], 'user2': data['receiver']})
+    if serializer.is_valid():
+        serializer.save()
+        friend_request.delete()
+        return Response('Friend request accepted')
+    return Response('Something went wrong while accepting the friend request')

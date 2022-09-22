@@ -30,4 +30,8 @@ urlpatterns = [
     path('join_group/<str:username>/<str:group_name>', views.join_group),
     path('leave_group/<str:username>/<str:group_name>', views.leave_group),
     path('is_member/<str:username>/<str:group_name>', views.is_member),
+    path('/get_friend_requests/<str:username>', views.get_friend_requests),
+    path('/send_friend_request/<str:sender>/<str:receiver>', views.send_friend_request),
+    path('/cancel_friend_request/<int:request_id>', views.cancel_friend_request),
+    path('/accept_friend_request/<int:request_id>', views.accept_friend_request),
 ]
