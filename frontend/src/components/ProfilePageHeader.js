@@ -1,4 +1,5 @@
 import { useFetch } from "../utils/hooks";
+import FriendButton from "./buttons/FriendButton";
 import ProfilePicForm from "./ProfilePicForm";
 
 
@@ -12,6 +13,9 @@ const ProfilePageHeader = ({ user, my }) => {
                 <ProfilePicForm user={user} /> // If it's user's own profile page, they can change their profile pic
             }
             <h1>{user}</h1>
+            {!my &&
+                <FriendButton user={user} />
+            }
         </section>
     )
 }

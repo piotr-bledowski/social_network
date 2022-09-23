@@ -68,10 +68,10 @@ class GroupMemberSerializer(serializers.ModelSerializer):
 class FriendSerializer(serializers.ModelSerializer):
     class Meta:
         model = Friend
-        fields = ['user1', 'user2']
+        fields = ['id', 'user1', 'user2']
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FriendRequest
-        fields = ['sender', 'receiver']
+        fields = ['id', 'sender', 'receiver', 'date']
