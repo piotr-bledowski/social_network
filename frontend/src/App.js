@@ -8,6 +8,7 @@ import { UserProvider } from './contexts/UserContext';
 import { useTheme } from './utils/hooks'
 import GroupPageWrapper from './pages/GroupPageWrapper';
 import GroupMenu from './components/groups/GroupMenu';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const { theme } = useTheme();
@@ -27,6 +28,7 @@ function App() {
               <Route path='/profile/:user' element={<ProfilePage />} />
               <Route path='/post/:id' element={<PostPage />} />
               <Route path='/group/:name' element={<GroupPageWrapper />} />
+              <Route path='/search/:phrase' element={<SearchPage />} />
             </Routes>
           </span>
           <span className='right-bar side-bar'></span>

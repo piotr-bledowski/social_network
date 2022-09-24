@@ -113,7 +113,7 @@ a {
 $espresso-primary: #1C0A00;
 $espresso-secondary: #2b1000;
 $espresso-menu: #331503;
-$espresso-input: #341300;
+$espresso-input: #3f1801;
 
 $cappuccino-primary: #562100;
 $cappuccino-secondary: #533004;
@@ -121,7 +121,7 @@ $cappuccino-input: #603704;
 
 $latte-primary: #DAB88B;
 $latte-secondary: #F4DFBA;
-$latte-input: #fce8c5;
+$latte-input: #fcefd9;
 
 $yerba-primary: #1E5128;
 $yerba-secondary: #3E7C17;
@@ -970,5 +970,51 @@ $font-light: #eee;
       width: 50%;
       height: 100%;
     }
+  }
+}
+
+.search-menu {
+  display: block;
+  position: relative;
+  height: 4rem;
+  width: 100%;
+
+  button {
+    display: inline;
+    position: relative;
+    width: 22%;
+    height: 90%;
+    //left: -1%;
+    top: 0.5rem;
+    margin-left: 2%;
+  }
+}
+
+.search-bar {
+  display: inline;
+  position: relative;
+  width: 30%;
+  height: 100%;
+  width: 35vw;
+
+  input,
+  button {
+    position: relative;
+    display: inline;
+    height: 2rem;
+    top: 1rem;
+    left: 25vw;
+  }
+
+  #search-text {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+    width: 30vw;
+    padding-left: 1rem;
+  }
+
+  #search-button {
+    width: 2rem;
+    border-radius: 0 1rem 1rem 0;
   }
 }

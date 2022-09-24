@@ -4,6 +4,7 @@ import ThemeDropdown from "./buttons/ThemeDropdown";
 import ProfileButton from "./buttons/ProfileButton";
 import LogoutButton from "./buttons/LogoutButton";
 import NotificationButton from "./buttons/NotificationButton";
+import SearchBar from "./SearchBar";
 
 const TopBar = () => {
 
@@ -12,6 +13,7 @@ const TopBar = () => {
             <div className="flex-container">
                 <FontAwesomeIcon className='main-icon' icon={faMugHot} />
                 <h1 id='network-name'><a href='/'>BEAN HUB</a></h1>
+                <SearchBar />
                 <NotificationButton />
                 <ProfileButton />
                 <LogoutButton />
