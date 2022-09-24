@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import GroupPageHeader from "../components/GroupPageHeader";
+import GroupPageHeader from "./GroupPageHeader";
 import { useFetch, useGroup, useUser } from "../utils/hooks";
 import PostList from '../components/posts/PostList';
 

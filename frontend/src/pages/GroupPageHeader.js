@@ -1,6 +1,6 @@
 import { useUser } from '../utils/hooks'
-import GroupMemberButton from './buttons/GroupMemberButton';
-import GroupPicForm from './GroupPicForm';
+import GroupMemberButton from '../components/buttons/GroupMemberButton';
+import GroupPicForm from '../components/GroupPicForm';
 
 const GroupPageHeader = ({ group }) => {
     const { name, creator, picture, members } = group;

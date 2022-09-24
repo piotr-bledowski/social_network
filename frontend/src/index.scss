@@ -163,7 +163,8 @@ $font-light: #eee;
   }
 
   .profile-pic,
-  .menu-group-pic {
+  .menu-group-pic,
+  .post-group-pic {
     border: 0.2rem solid $espresso-primary;
   }
 
@@ -223,7 +224,8 @@ $font-light: #eee;
   }
 
   .profile-pic,
-  .menu-group-pic {
+  .menu-group-pic,
+  .post-group-pic {
     border: 0.2rem solid $cappuccino-primary;
   }
 
@@ -279,7 +281,8 @@ $font-light: #eee;
   }
 
   .profile-pic,
-  .menu-group-pic {
+  .menu-group-pic,
+  .post-group-pic {
     border: 0.2rem solid $latte-primary;
   }
 
@@ -335,7 +338,8 @@ $font-light: #eee;
   }
 
   .profile-pic,
-  .menu-group-pic {
+  .menu-group-pic,
+  .post-group-pic {
     border: 0.2rem solid $yerba-primary;
   }
 
@@ -447,6 +451,10 @@ $font-light: #eee;
 .post-header {
   width: 100%;
   display: block;
+
+  a {
+    display: inline;
+  }
 }
 
 .post-content {
@@ -689,6 +697,23 @@ $font-light: #eee;
   border-radius: 50%;
   left: 2%;
   top: 0.7rem;
+}
+
+.post-group-pic {
+  display: inline;
+  position: absolute;
+  height: 2vw;
+  width: 2vw;
+  border-radius: 50%;
+  left: 25%;
+  top: 0.7rem;
+}
+
+.post-group {
+  position: absolute;
+  display: inline;
+  left: 30%;
+  top: -0.3rem;
 }
 
 .profile-page-header {

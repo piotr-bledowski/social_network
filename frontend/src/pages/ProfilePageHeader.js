@@ -1,6 +1,6 @@
 import { useFetch } from "../utils/hooks";
-import FriendButton from "./buttons/FriendButton";
-import ProfilePicForm from "./ProfilePicForm";
+import FriendButton from "../components/buttons/FriendButton";
+import ProfilePicForm from "../components/ProfilePicForm";
 
 
 const ProfilePageHeader = ({ user, my }) => {

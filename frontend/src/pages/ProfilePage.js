@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import PostList from "../components/posts/PostList";
-import ProfilePageHeader from "../components/ProfilePageHeader";
+import ProfilePageHeader from "./ProfilePageHeader";
 import { useUser } from "../utils/hooks";
 
 const ProfilePage = () => {
