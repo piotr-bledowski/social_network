@@ -1,9 +1,10 @@
+from audioop import reverse
 from urllib.request import Request
 from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
-from .helpers import add_member
+from .helpers import add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names
 
 from .models import Friend, FriendRequest, Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
@@ -37,7 +38,6 @@ def index(request):
         "Edit a specific post": '/edit_post/<int:post_id>',
         "Get all posts": '/get_all_posts/',
         "Get user's posts": '/get_users_posts/<str:username>',
-        "Get all public posts": '/get_public_posts/', # to delete later
         "Get group's posts": '/get_group_posts/<str:group_name>',
         "Like (a post, comment or a reply to a comment)": "/like/<str:type>/<str:username>/<int:id>",
         "Unlike (a post, comment or a reply to a comment)": "/unlike/<str:type>/<str:username>/<int:id>",
@@ -62,6 +62,7 @@ def index(request):
         "Accept friend request": '/accept_friend_request/<int:request_id>',
         "Remove from friends": '/unfriend/<int:friendship_id>',
         "Check if friendship exists": '/is_friend/<str:user1>/<str:user2>',
+        "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
     })
 
 
@@ -104,13 +105,6 @@ def get_post(request, id):
 @api_view(['POST'])
 def edit_post(request, id):
     pass
-
-
-@api_view(['GET'])
-def get_public_posts(request):
-    posts = Post.objects.filter(group=None)
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data[::-1])
 
 
 @api_view(['GET'])
@@ -382,3 +376,22 @@ def is_friend(request, user1, user2):
         return Response(serializer.data)
     except Friend.DoesNotExist:
         return Response('no')
+
+
+@api_view(['GET'])
+def get_feed(request, username):
+    # get data for fetching posts
+    group_names = get_users_group_names(username)
+    friends = get_users_friends(username)
+
+    # fetch all parts of feed
+    public_posts = get_public_posts()
+    group_posts = get_groups_private_posts(group_names)
+    friends_posts = get_friends_private_posts(friends)
+
+    # put it all together
+    posts = public_posts + group_posts + friends_posts
+    posts.sort(key=lambda post: post.date, reverse=True)
+
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)

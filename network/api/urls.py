@@ -11,7 +11,6 @@ urlpatterns = [
     path('get_all_posts/', views.get_all_posts),
     path('get_post/<int:id>', views.get_post),
     path('edit_post/<int:id>', views.edit_post),
-    path('get_public_posts/', views.get_public_posts),
     path('get_users_posts/<str:username>', views.get_users_posts),
     path('get_group_posts/<str:group_name>', views.get_group_posts),
     path('like/<str:type>/<str:username>/<int:id>', views.like),
@@ -37,4 +36,5 @@ urlpatterns = [
     path('accept_friend_request/<int:request_id>', views.accept_friend_request),
     path('unfriend/<int:friendship_id>', views.unfriend),
     path('is_friend/<str:user1>/<str:user2>', views.is_friend),
+    path('get_feed/<str:username>', views.get_feed),
 ]
