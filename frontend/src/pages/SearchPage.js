@@ -1,6 +1,7 @@
-
+import { useParams } from "react-router-dom";
 
 const SearchPage = () => {
+    const { phrase } = useParams();
     return (
         <>
             <div className="search-menu">

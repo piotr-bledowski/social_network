@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
-from .helpers import add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names
+from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts
 
 from .models import Friend, FriendRequest, Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
@@ -32,38 +32,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(['GET'])
 def index(request):
-    return Response({
-        "Create new post": '/create_post/',
-        "Get a specific post": '/get_post/<int:post_id>',
-        "Edit a specific post": '/edit_post/<int:post_id>',
-        "Get all posts": '/get_all_posts/',
-        "Get user's posts": '/get_users_posts/<str:username>',
-        "Get group's posts": '/get_group_posts/<str:group_name>',
-        "Like (a post, comment or a reply to a comment)": "/like/<str:type>/<str:username>/<int:id>",
-        "Unlike (a post, comment or a reply to a comment)": "/unlike/<str:type>/<str:username>/<int:id>",
-        "Is this (post, comment, reply) liked by current user?": "/is_liked/<str:type>/<str:username>/<int:id>",
-        "Create new comment": '/create_comment/',
-        "Get comments for a post": "/get_comments/<int:post_id>",
-        "Create new reply": '/create_reply/',
-        "Get replies for a comment": "/get_replies/<int:comment_id>",
-        "Set profile picture": '/set_profile_pic/<str:username>',
-        "Get profile picture": '/get_profile_pic/<str:username>',
-        "Create group": '/create_group/',
-        "Get group": '/get_group/<str:group_name>',
-        "Upload group's picture": '/set_group_pic/<str:group_name>',
-        "Get user's groups": '/get_users_groups/<str:username>',
-        "Join group": '/join_group/<str:username>/<str:group_name>',
-        "Leave group": '/leave_group/<str:username>/<str:group_name>',
-        "Check if user is a member of a group": '/is_member/<str:username>/<str:group_name>',
-        "Get friend requests": '/get_friend_requests/<str:username>',
-        "Get friend request (check if it exists)": '/get_friend_request/<str:sender>/<str:receiver>',
-        "Send friend request": '/send_friend_request/<str:sender>/<str:receiver>',
-        "Cancel friend request as the sender (or reject as the receiver, same thing)": '/cancel_friend_request/<int:request_id>',
-        "Accept friend request": '/accept_friend_request/<int:request_id>',
-        "Remove from friends": '/unfriend/<int:friendship_id>',
-        "Check if friendship exists": '/is_friend/<str:user1>/<str:user2>',
-        "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
-    })
+    return Response(API_DESCRIPTION)
 
 
 @api_view(['POST'])
@@ -89,8 +58,7 @@ def get_all_posts(request):
 
 @api_view(['GET'])
 def get_users_posts(request, username):
-    user = User.objects.get(username=username)
-    posts = Post.objects.filter(author=user)
+    posts = get_users_own_posts(username)
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data[::-1])
 
@@ -388,10 +356,25 @@ def get_feed(request, username):
     public_posts = get_public_posts()
     group_posts = get_groups_private_posts(group_names)
     friends_posts = get_friends_private_posts(friends)
+    own_posts = list(get_users_own_posts(username))
 
     # put it all together
-    posts = public_posts + group_posts + friends_posts
+    posts = public_posts + group_posts + friends_posts + own_posts
     posts.sort(key=lambda post: post.date, reverse=True)
 
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def search(request, username, type, phrase):
+    if type == 'all':
+        return
+    elif type == 'posts':
+        return
+    elif type == 'groups':
+        return
+    elif type == 'users':
+        return
+    else:
+        raise Exception

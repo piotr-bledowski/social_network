@@ -996,6 +996,7 @@ $font-light: #eee;
   width: 30%;
   height: 100%;
   width: 35vw;
+  left: 25vw;
 
   input,
   button {
@@ -1003,7 +1004,6 @@ $font-light: #eee;
     display: inline;
     height: 2rem;
     top: 1rem;
-    left: 25vw;
   }
 
   #search-text {

@@ -37,4 +37,5 @@ urlpatterns = [
     path('unfriend/<int:friendship_id>', views.unfriend),
     path('is_friend/<str:user1>/<str:user2>', views.is_friend),
     path('get_feed/<str:username>', views.get_feed),
+    path('search/<str:username>/<str:type>/<str:phrase>', views.search),
 ]
