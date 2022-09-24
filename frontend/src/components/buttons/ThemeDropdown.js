@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const ThemeDropdown = () => {
     const { setTheme } = useContext(ThemeContext);
@@ -13,7 +13,7 @@ const ThemeDropdown = () => {
         <>
             <button className='dropdown-btn'>
                 <h3>Theme</h3>
-                <div className="dropdown-content">
+                <div id='theme-dropdown' className="dropdown-content">
                     <a href='#' id='espresso-theme' onClick={() => handleClick('espresso')}>Espresso</a>
                     <a href='#' id='cappuccino-theme' onClick={() => handleClick('cappuccino')}>Cappuccino</a>
                     <a href='#' id='latte-theme' onClick={() => handleClick('latte')}>Latte</a>
