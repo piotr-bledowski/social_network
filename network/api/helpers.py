@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from .models import Friend, Group, Post, GroupMember, User
 from .serializers import GroupMemberSerializer
+from django.db.models import Q
 
 # helper functions and stuff to help avoid making views.py one giant behemoth of a file, which it is nonetheless, but like, I'm trying
 
@@ -60,7 +61,7 @@ def get_users_own_posts(user):
 
 
 def get_public_posts():
-    return list(Post.objects.filter(public=True))
+    return Post.objects.filter(public=True)
 
 
 def get_users_group_names(user):
@@ -70,7 +71,7 @@ def get_users_group_names(user):
 
 
 def get_groups_private_posts(groups):
-    return list(Post.objects.filter(public=False, group__in=groups))
+    return Post.objects.filter(public=False, group__in=groups)
 
 
 def get_users_friends(user):
@@ -80,13 +81,23 @@ def get_users_friends(user):
 
 
 def get_friends_private_posts(friends):
-    return list(Post.objects.filter(public=False, author__in=friends, group=None))
+    return Post.objects.filter(public=False, author__in=friends, group=None)
 
 
 def search_posts(user, phrase):
     friends = get_users_friends(user)
     groups = get_users_group_names(user)
-    all_posts = get_public_posts() + get_friends_private_posts(friends) + get_groups_private_posts(groups)
+    public_posts = get_public_posts()
+    friends_posts = get_friends_private_posts(friends)
+    group_posts = get_groups_private_posts(groups)
+    own_posts = get_users_own_posts(user)
+
+    public_posts_filtered = public_posts.filter(Q(title__icontains=phrase) | Q(text__icontains=phrase))
+    friends_posts_filtered = friends_posts.filter(Q(title__icontains=phrase) | Q(text__icontains=phrase))
+    group_posts_filtered = group_posts.filter(Q(title__icontains=phrase) | Q(text__icontains=phrase))
+    own_posts_filtered = own_posts.filter(Q(title__icontains=phrase) | Q(text__icontains=phrase))
+
+    return list(public_posts_filtered) + list(friends_posts_filtered) + list(group_posts_filtered) + list(own_posts_filtered)
 
 
 def search_groups(phrase):
