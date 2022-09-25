@@ -387,12 +387,14 @@ def search(request, username, content_type, phrase):
             user['type'] = 'user'
         
         data = post_serializer.data + group_serializer.data + user_serializer.data
+        random.shuffle(data)
     elif content_type == 'posts':
         posts = search_posts(username, phrase)
         serializer = PostSerializer(posts, many=True)
         for post in serializer.data:
             post['type'] = 'post'
         data = serializer.data
+        data.sort(key=lambda post: post['date'], reverse=True)
     elif content_type == 'groups':
         groups = search_groups(phrase)
         serializer = GroupSerializer(groups, many=True)
