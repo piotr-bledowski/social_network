@@ -4,10 +4,10 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
-from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_posts
+from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_groups, search_posts, search_users
 
 from .models import Friend, FriendRequest, Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer
+from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
@@ -369,16 +369,42 @@ def get_feed(request, username):
 
 
 @api_view(['GET'])
-def search(request, username, type, phrase):
-    if type == 'all':
-        pass
-    elif type == 'posts':
+def search(request, username, content_type, phrase):
+    if content_type == 'all':
+        posts = search_posts(username, phrase)
+        post_serializer = PostSerializer(posts, many=True)
+        for post in post_serializer.data:
+            post['type'] = 'post'
+        
+        groups = search_groups(phrase)
+        group_serializer = GroupSerializer(groups, many=True)
+        for group in group_serializer.data:
+            group['type'] = 'group'
+
+        users = search_users(phrase)
+        user_serializer =  UserSerializer(users, many=True)
+        for user in user_serializer.data:
+            user['type'] = 'user'
+        
+        data = post_serializer.data + group_serializer.data + user_serializer.data
+    elif content_type == 'posts':
         posts = search_posts(username, phrase)
         serializer = PostSerializer(posts, many=True)
-    elif type == 'groups':
-        pass
-    elif type == 'users':
-        pass
+        for post in serializer.data:
+            post['type'] = 'post'
+        data = serializer.data
+    elif content_type == 'groups':
+        groups = search_groups(phrase)
+        serializer = GroupSerializer(groups, many=True)
+        for group in serializer.data:
+            group['type'] = 'group'
+        data = serializer.data
+    elif content_type == 'users':
+        users = search_users(phrase)
+        serializer =  UserSerializer(users, many=True)
+        for user in serializer.data:
+            user['type'] = 'user'
+        data = serializer.data
     else:
         raise Exception
-    return Response(serializer.data)
+    return Response(data)

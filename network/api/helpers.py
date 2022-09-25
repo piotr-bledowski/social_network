@@ -36,7 +36,7 @@ API_DESCRIPTION = {
         "Remove from friends": '/unfriend/<int:friendship_id>',
         "Check if friendship exists": '/is_friend/<str:user1>/<str:user2>',
         "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
-        "Search": '/search/<str:username>/<str:type>/<str:phrase>',
+        "Search": '/search/<str:username>/<str:content_type>/<str:phrase>',
     }
 
 
@@ -101,8 +101,10 @@ def search_posts(user, phrase):
 
 
 def search_groups(phrase):
-    return
+    groups = Group.objects.filter(name__icontains=phrase)
+    return list(groups)
 
 
 def search_users(phrase):
-    pass
+    users = User.objects.filter(username__icontains=phrase)
+    return list(users)
