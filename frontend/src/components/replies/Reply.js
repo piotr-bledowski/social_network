@@ -1,8 +1,12 @@
+import { useUser } from "../../utils/hooks";
+import DeleteButton from "../buttons/DeleteButton";
 import LikeButton from "../buttons/LikeButton";
 
 
 const Reply = ({ reply }) => {
     const { id, author, text, date, likes } = reply;
+    const user = useUser();
+    const my = user === author;
 
     return (
         <div className="reply">
@@ -15,6 +19,7 @@ const Reply = ({ reply }) => {
             </div>
             <div className="reply-bottom-bar">
                 <LikeButton likeData={{ id: id, likes: likes, type: 'reply' }} />
+                {my && <DeleteButton type={'reply'} id={id} />}
             </div>
         </div>
     )
