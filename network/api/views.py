@@ -77,6 +77,13 @@ def edit_post(request, id):
     pass
 
 
+@api_view(['DELETE'])
+def delete_post(request, id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return Response('Post deleted successfully')
+
+
 @api_view(['GET'])
 def get_group_posts(request, group_name):
     posts = Post.objects.filter(group=group_name)
@@ -156,6 +163,13 @@ def create_comment(request):
     return Response('INVALID POST DATA')
 
 
+@api_view(['DELETE'])
+def delete_comment(request, id):
+    comment = Comment.objects.get(id=id)
+    comment.delete()
+    return Response('Comment deleted successfully')
+
+
 @api_view(['GET'])
 def get_comments(request, id):
     comments = Comment.objects.filter(post=id)
@@ -176,6 +190,13 @@ def create_reply(request):
         serializer.save()
         return Response(serializer.data)
     return Response('INVALID POST DATA')
+
+
+@api_view(['DELETE'])
+def delete_reply(request, id):
+    reply = Reply.objects.get(id=id)
+    reply.delete()
+    return Response('Reply deleted successfully')
 
 
 @api_view(['GET'])

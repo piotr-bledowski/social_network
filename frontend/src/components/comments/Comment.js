@@ -2,11 +2,15 @@ import LikeButton from "../buttons/LikeButton";
 import CommentButton from "../buttons/CommentButton";
 import ReplyList from "../replies/ReplyList";
 import { useState } from "react";
+import DeleteButton from "../buttons/DeleteButton";
+import { useUser } from "../../utils/hooks";
 
 
 const Comment = ({ commentData }) => {
     const { id, author, text, date, likes, replies } = commentData;
     const [showReplies, setShowReplies] = useState(false);
+    const user = useUser();
+    const my = user === author;
 
     const toggleReplies = () => {
         const list = document.getElementById(`reply-list-${id}`);
@@ -33,6 +37,7 @@ const Comment = ({ commentData }) => {
                 <div className="comment-bottom-bar">
                     <LikeButton likeData={{ id: id, likes: likes, type: 'comment' }} />
                     <CommentButton data={{ comments: replies, handleClick: toggleReplies }} />
+                    {my && <DeleteButton type={'comment'} id={id} />}
                 </div>
             </div>
             <ReplyList commentId={id} uri={`/api/get_replies/${id}`} />
