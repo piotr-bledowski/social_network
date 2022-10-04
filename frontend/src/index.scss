@@ -501,6 +501,10 @@ $font-light: #eee;
   display: block;
   height: 3rem;
 
+  a {
+    display: inline;
+  }
+
   h3 {
     display: inline;
     position: relative;
@@ -1114,8 +1118,8 @@ $font-light: #eee;
 }
 
 .delete-btn {
-  // position: relative;
-  height: 100%;
+  position: absolute;
+  height: 3rem;
   display: inline;
   width: 10%;
 }

@@ -383,6 +383,7 @@ def get_feed(request, username):
 
     # put it all together
     posts = public_posts + group_posts + friends_posts + own_posts
+    posts = list(dict.fromkeys(posts))
     posts.sort(key=lambda post: post.date, reverse=True)
 
     serializer = PostSerializer(posts, many=True)
@@ -430,4 +431,6 @@ def search(request, username, content_type, phrase):
         data = serializer.data
     else:
         raise Exception
+    data = list(dict.fromkeys(data))
+    data.sort(key=lambda post: post.date, reverse=True)
     return Response(data)
