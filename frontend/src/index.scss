@@ -179,7 +179,8 @@ $font-light: #eee;
   #img-input,
   .comment,
   .result-group,
-  .result-user {
+  .result-user,
+  .dialog-div {
     background-color: $espresso-secondary;
   }
 
@@ -243,7 +244,8 @@ $font-light: #eee;
   #img-input,
   .comment,
   .result-group,
-  .result-user {
+  .result-user,
+  .dialog-div {
     background-color: $cappuccino-secondary;
   }
 
@@ -302,7 +304,8 @@ $font-light: #eee;
   #img-input,
   .comment,
   .result-group,
-  .result-user {
+  .result-user,
+  .dialog-div {
     background-color: $latte-secondary;
   }
 
@@ -361,7 +364,8 @@ $font-light: #eee;
   #img-input,
   .comment,
   .result-group,
-  .result-user {
+  .result-user,
+  .dialog-div {
     background-color: $yerba-secondary;
   }
 
@@ -1122,4 +1126,19 @@ $font-light: #eee;
   height: 3rem;
   display: inline;
   width: 10%;
+}
+
+.screen-darkener {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+.dialog-div {
+  position: fixed;
+  z-index: 5;
 }
