@@ -54,7 +54,6 @@ a {
   height: 100%;
   width: 100%;
   display: block;
-  z-index: 0;
 }
 
 .flex-container {
@@ -458,7 +457,6 @@ $font-light: #eee;
   width: 100%;
   min-height: 15%;
   margin-top: 2.5rem;
-  z-index: 0;
 }
 
 .post-header {
@@ -545,7 +543,6 @@ $font-light: #eee;
   width: 90%;
   height: 100%;
   left: 5%;
-  z-index: 0;
 }
 
 .background {
@@ -1149,8 +1146,23 @@ $font-light: #eee;
   height: 20vh;
   display: none;
 
+  .dialog-text-div {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 70%;
+
+    h3 {
+      position: relative;
+      text-align: center;
+      left: 5%;
+      top: 10%;
+    }
+  }
+
   .dialog-btns {
     height: 30%;
+    width: 100%;
     display: block;
     position: relative;
     bottom: 0;

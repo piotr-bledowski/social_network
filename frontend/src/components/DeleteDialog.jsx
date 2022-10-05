@@ -14,7 +14,9 @@ const DeleteDialog = ({uri, type, id}) => {
 
     return (
         <div id={`dialog-div-${id}`} className="dialog-div">
-            <h3>Are you sure you want to delete this {type}?</h3>
+            <div className="dialog-text-div">
+                <h3>Are you sure you want to delete this {type}?</h3>
+            </div>
             <div className="dialog-btns">
                 <button onClick={handleClickYes}>
                     <h4>Yes</h4>
