@@ -1148,4 +1148,17 @@ $font-light: #eee;
   width: 20vw;
   height: 20vh;
   display: none;
+
+  .dialog-btns {
+    height: 30%;
+    display: block;
+    position: relative;
+    bottom: 0;
+
+    button {
+      height: 100%;
+      width: 50%;
+      display: inline;
+    }
+  }
 }

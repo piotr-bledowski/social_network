@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDumpster } from "@fortawesome/free-solid-svg-icons";
-import DeleteDialog from "../posts/DeleteDialog";
+import DeleteDialog from "../DeleteDialog";
+import { showDialog } from "../../utils/helpers";
 
 const DeleteButton = ({ type, id }) => {
     const handleClick = () => {
-        fetch(`/api/delete_${type}/${id}`, {
-            method: 'DELETE'
-        });
+        showDialog();
     }
 
     return (
@@ -16,7 +15,7 @@ const DeleteButton = ({ type, id }) => {
                     <FontAwesomeIcon icon={faDumpster} />
                 </h2>
             </button>
-            <DeleteDialog />
+            <DeleteDialog uri={`/api/delete_${type}/${id}`} type={type} />
         </>
     )
 }
