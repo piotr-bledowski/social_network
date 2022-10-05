@@ -15,6 +15,7 @@ function App() {
 
   return (
     <div className={"App theme-" + theme}>
+      <div id="screen-darkener" className="screen-darkener"></div>
       <UserProvider>
         <TopBar />
         <div className='background'></div>

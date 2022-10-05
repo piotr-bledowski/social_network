@@ -38,17 +38,17 @@ export const imgApiPost = (uri, formData) => {
         .catch(error => console.log(error));
 }
 
-export const showDialog = () => {
+export const showDialog = id => {
     const darkener = document.getElementById('screen-darkener');
-    const dialog = document.getElementById('dialog-div');
+    const dialog = document.getElementById(`dialog-div-${id}`);
 
     darkener.style.display = 'block';
     dialog.style.display = 'block';
 }
 
-export const hideDialog = () => {
+export const hideDialog = id => {
     const darkener = document.getElementById('screen-darkener');
-    const dialog = document.getElementById('dialog-div');
+    const dialog = document.getElementById(`dialog-div-${id}`);
 
     darkener.style.display = 'none';
     dialog.style.display = 'none';

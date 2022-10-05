@@ -5,7 +5,7 @@ import { showDialog } from "../../utils/helpers";
 
 const DeleteButton = ({ type, id }) => {
     const handleClick = () => {
-        showDialog();
+        showDialog(id);
     }
 
     return (
@@ -15,7 +15,7 @@ const DeleteButton = ({ type, id }) => {
                     <FontAwesomeIcon icon={faDumpster} />
                 </h2>
             </button>
-            <DeleteDialog uri={`/api/delete_${type}/${id}`} type={type} />
+            <DeleteDialog uri={`/api/delete_${type}/${id}`} type={type} id={id} />
         </>
     )
 }
