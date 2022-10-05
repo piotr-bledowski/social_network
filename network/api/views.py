@@ -394,6 +394,7 @@ def get_feed(request, username):
 def search(request, username, content_type, phrase):
     if content_type == 'all':
         posts = search_posts(username, phrase)
+        posts = list(dict.fromkeys(posts))
         post_serializer = PostSerializer(posts, many=True)
         for post in post_serializer.data:
             post['type'] = 'post'
@@ -412,6 +413,7 @@ def search(request, username, content_type, phrase):
         random.shuffle(data)
     elif content_type == 'posts':
         posts = search_posts(username, phrase)
+        posts = list(dict.fromkeys(posts))
         serializer = PostSerializer(posts, many=True)
         for post in serializer.data:
             post['type'] = 'post'
@@ -431,6 +433,4 @@ def search(request, username, content_type, phrase):
         data = serializer.data
     else:
         raise Exception
-    data = list(dict.fromkeys(data))
-    data.sort(key=lambda post: post.date, reverse=True)
     return Response(data)

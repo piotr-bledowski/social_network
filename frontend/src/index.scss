@@ -1136,9 +1136,16 @@ $font-light: #eee;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 4;
+  display: none;
+  // transition: all 0.5s;
 }
 
 .dialog-div {
   position: fixed;
   z-index: 5;
+  left: 40vw;
+  top: 40vh;
+  width: 20vw;
+  height: 20vh;
+  display: none;
 }
