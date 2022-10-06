@@ -5,15 +5,15 @@ const DeleteDialog = ({uri, type, id}) => {
 
     const handleClickYes = () => {
         fetch(uri, {method: 'DELETE'});
-        hideDialog(id);
+        hideDialog(type, id);
     }
 
     const handleClickNo = () => {
-        hideDialog(id);
+        hideDialog(type, id);
     }
 
     return (
-        <div id={`dialog-div-${id}`} className="dialog-div">
+        <div id={`dialog-div-${type}-${id}`} className="dialog-div">
             <div className="dialog-text-div">
                 <h3>Are you sure you want to delete this {type}?</h3>
             </div>

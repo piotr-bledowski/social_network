@@ -614,7 +614,9 @@ $font-light: #eee;
     top: 1.5rem;
 
 
-    div {
+    .comment-header,
+    .comment-content,
+    .comment-bottom-bar {
       position: relative;
       width: 96%;
       display: block;

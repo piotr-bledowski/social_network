@@ -5,7 +5,7 @@ import { showDialog } from "../../utils/helpers";
 
 const DeleteButton = ({ type, id }) => {
     const handleClick = () => {
-        showDialog(id);
+        showDialog(type, id);
     }
 
     return (
