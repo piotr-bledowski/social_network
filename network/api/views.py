@@ -434,3 +434,11 @@ def search(request, username, content_type, phrase):
     else:
         raise Exception
     return Response(data)
+
+
+@api_view(['GET'])
+def get_friends(request, username):
+    friends_names = get_users_friends(username)
+    friends = User.objects.filter(username__in=friends_names)
+    serializer = UserSerializer(friends, many=True)
+    return Response(serializer.data)

@@ -40,6 +40,7 @@ API_DESCRIPTION = {
         "Check if friendship exists": '/is_friend/<str:user1>/<str:user2>',
         "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
         "Search": '/search/<str:username>/<str:content_type>/<str:phrase>',
+        "Get friends": '/get_friends/<str:username>',
     }
 
 

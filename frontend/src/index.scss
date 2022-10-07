@@ -787,40 +787,44 @@ $font-light: #eee;
 }
 
 .group {
+  a {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.group,
+.friend {
   position: relative;
   display: block;
   width: 100%;
   height: 4rem;
 
-  a {
+  button {
     position: relative;
-    width: 100%;
     height: 100%;
+    width: 100%;
 
-    button {
+    img,
+    h3 {
+      display: inline;
       position: relative;
-      height: 100%;
-      width: 100%;
+    }
 
-      img,
-      h3 {
-        display: inline;
-        position: relative;
-      }
+    img {
+      border-radius: 50%;
+      height: 2vw;
+      width: 2vw;
+      left: -5%;
+    }
 
-      img {
-        border-radius: 50%;
-        height: 2vw;
-        width: 2vw;
-        left: -5%;
-      }
-
-      h3 {
-        bottom: 25%;
-      }
+    h3 {
+      bottom: 25%;
     }
   }
 }
+
 
 .group-page-header {
   display: block;
@@ -901,7 +905,8 @@ $font-light: #eee;
   height: 4rem;
 }
 
-.group-list {
+.group-list,
+.friend-list {
   position: relative;
   display: block;
 
