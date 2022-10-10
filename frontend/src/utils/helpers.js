@@ -53,3 +53,15 @@ export const hideDialog = (type, id) => {
     darkener.style.display = 'none';
     dialog.style.display = 'none';
 }
+
+export const showConvo = id => {
+    const convo = document.getElementById(`convo-${id}`);
+
+    convo.style.display = 'block';
+}
+
+export const hideConvo = id => {
+    const convo = document.getElementById(`convo-${id}`);
+
+    convo.style.display = 'none';
+}

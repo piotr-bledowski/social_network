@@ -163,6 +163,7 @@ $font-light: #eee;
 
   .profile-pic,
   .menu-group-pic,
+  .friend-pic,
   .post-group-pic,
   .result-group-pic {
     border: 0.2rem solid $espresso-primary;
@@ -228,6 +229,7 @@ $font-light: #eee;
 
   .profile-pic,
   .menu-group-pic,
+  .friend-pic,
   .post-group-pic,
   .result-group-pic {
     border: 0.2rem solid $cappuccino-primary;
@@ -288,6 +290,7 @@ $font-light: #eee;
 
   .profile-pic,
   .menu-group-pic,
+  .friend-pic,
   .post-group-pic,
   .result-group-pic {
     border: 0.2rem solid $latte-primary;
@@ -348,6 +351,7 @@ $font-light: #eee;
 
   .profile-pic,
   .menu-group-pic,
+  .friend-pic,
   .post-group-pic,
   .result-group-pic {
     border: 0.2rem solid $yerba-primary;
@@ -1178,6 +1182,23 @@ $font-light: #eee;
       height: 100%;
       width: 50%;
       display: inline;
+    }
+  }
+}
+
+.convo {
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  display: none;
+  position: absolute;
+
+  .convo-top-bar {
+    height: 3rem;
+
+    .convo-close-btn {
+      height: 3rem;
+      width: 3rem;
     }
   }
 }

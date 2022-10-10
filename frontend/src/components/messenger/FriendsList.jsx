@@ -11,7 +11,7 @@ const FriendList = ({uri}) => {
         <div className="friend-list">
             <h2>Your friends</h2>
             {data.map(friend => 
-                <Friend />
+                <Friend friend={{...friend}} />
             )}
         </div>
     )
