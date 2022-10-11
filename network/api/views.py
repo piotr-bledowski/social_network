@@ -442,3 +442,13 @@ def get_friends(request, username):
     friends = User.objects.filter(username__in=friends_names)
     serializer = UserSerializer(friends, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_messages(request, user1, user2):
+    pass
+
+
+@api_view(['POST'])
+def send_message(request):
+    pass

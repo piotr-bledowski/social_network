@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Friend, FriendRequest, Group, GroupMember, Post, Comment, Reply, PostLike, CommentLike, ReplyLike, ProfilePicture
+from .models import Friend, FriendRequest, Group, GroupMember, Message, Post, Comment, Reply, PostLike, CommentLike, ReplyLike, ProfilePicture
 
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
@@ -43,6 +43,10 @@ class FriendRequestAdmin(admin.ModelAdmin):
     pass
 
 
+class MessageAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Reply, ReplyAdmin)
@@ -54,3 +58,4 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(GroupMember, GroupMemberAdmin)
 admin.site.register(Friend, FriendAdmin)
 admin.site.register(FriendRequest, FriendRequestAdmin)
+admin.site.register(Message, MessageAdmin)
