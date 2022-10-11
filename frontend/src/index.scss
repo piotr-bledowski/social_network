@@ -165,7 +165,8 @@ $font-light: #eee;
   .menu-group-pic,
   .friend-pic,
   .post-group-pic,
-  .result-group-pic {
+  .result-group-pic,
+  .convo-profile-pic {
     border: 0.2rem solid $espresso-primary;
   }
 
@@ -180,7 +181,8 @@ $font-light: #eee;
   .comment,
   .result-group,
   .result-user,
-  .dialog-div {
+  .dialog-div,
+  .convo {
     background-color: $espresso-secondary;
   }
 
@@ -231,7 +233,8 @@ $font-light: #eee;
   .menu-group-pic,
   .friend-pic,
   .post-group-pic,
-  .result-group-pic {
+  .result-group-pic,
+  .convo-profile-pic {
     border: 0.2rem solid $cappuccino-primary;
   }
 
@@ -292,7 +295,8 @@ $font-light: #eee;
   .menu-group-pic,
   .friend-pic,
   .post-group-pic,
-  .result-group-pic {
+  .result-group-pic,
+  .convo-profile-pic {
     border: 0.2rem solid $latte-primary;
   }
 
@@ -307,7 +311,8 @@ $font-light: #eee;
   .comment,
   .result-group,
   .result-user,
-  .dialog-div {
+  .dialog-div,
+  .convo {
     background-color: $latte-secondary;
   }
 
@@ -353,7 +358,8 @@ $font-light: #eee;
   .menu-group-pic,
   .friend-pic,
   .post-group-pic,
-  .result-group-pic {
+  .result-group-pic,
+  .convo-profile-pic {
     border: 0.2rem solid $yerba-primary;
   }
 
@@ -368,7 +374,8 @@ $font-light: #eee;
   .comment,
   .result-group,
   .result-user,
-  .dialog-div {
+  .dialog-div,
+  .convo {
     background-color: $yerba-secondary;
   }
 
@@ -1187,18 +1194,51 @@ $font-light: #eee;
 }
 
 .convo {
-  height: 100%;
+  height: 92vh;
   width: 100%;
   z-index: 5;
   display: none;
-  position: absolute;
+  position: fixed;
+  top: 8vh;
 
   .convo-top-bar {
     height: 3rem;
+    width: 100%;
+    position: relative;
+    display: block;
+
+    a {
+      display: inline;
+      position: relative;
+      width: 80%;
+      height: 100%;
+    }
+
+    .convo-profile-link {
+      display: inline;
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      img {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        display: inline;
+        position: relative;
+      }
+
+      h3 {
+        display: inline;
+        position: relative;
+      }
+    }
 
     .convo-close-btn {
       height: 3rem;
       width: 3rem;
+      position: relative;
+      display: inline;
     }
   }
 }

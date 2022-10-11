@@ -96,3 +96,10 @@ class FriendRequest(models.Model):
     sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='sender')
     receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='reveiver')
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='receiver')
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    text = models.CharField(blank=False)
