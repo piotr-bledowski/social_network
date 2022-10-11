@@ -41,6 +41,8 @@ API_DESCRIPTION = {
         "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
         "Search": '/search/<str:username>/<str:content_type>/<str:phrase>',
         "Get friends": '/get_friends/<str:username>',
+        "Get messages": '/get_messages/<str:user1>/<str:user2>',
+        "Send a message": '/send_message',
     }
 
 
