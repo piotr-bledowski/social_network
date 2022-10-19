@@ -6,8 +6,8 @@ from rest_framework.response import Response
 
 from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_groups, search_posts, search_users
 
-from .models import Friend, FriendRequest, Group, GroupMember, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
+from .models import Friend, FriendRequest, Group, GroupMember, Message, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, MessageSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
@@ -446,9 +446,15 @@ def get_friends(request, username):
 
 @api_view(['GET'])
 def get_messages(request, user1, user2):
-    pass
+    messages = Message.objects.filter(Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1))
+    serializer = MessageSerializer(messages, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
 def send_message(request):
-    pass
+    serializer = MessageSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')

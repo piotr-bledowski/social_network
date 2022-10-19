@@ -1,5 +1,6 @@
 import { hideConvo } from "../../utils/helpers";
 import {useFetch} from "../../utils/hooks";
+import MessageForm from "./MessageForm";
 
 const Conversation = ({friend}) => {
     const {id, username} = friend;
@@ -21,6 +22,7 @@ const Conversation = ({friend}) => {
                 </a>
                 <button onClick={handleClickClose} className="convo-close-btn">x</button>
             </section>
+            <MessageForm user={username} />
         </div>
     )
 }

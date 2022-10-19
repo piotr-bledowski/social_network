@@ -1195,7 +1195,7 @@ $font-light: #eee;
 
 .convo {
   height: 92vh;
-  width: 100%;
+  width: 20%;
   z-index: 5;
   display: none;
   position: fixed;
@@ -1239,6 +1239,35 @@ $font-light: #eee;
       width: 3rem;
       position: relative;
       display: inline;
+    }
+  }
+}
+
+.message-form-div {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
+
+  .message-form {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    .message-field {
+      display: inline;
+      position: relative;
+      width: 75%;
+      margin-left: 3%;
+      height: 100%;
+    }
+
+    .message-send-btn {
+      display: inline;
+      position: relative;
+      margin-left: 2%;
+      width: 10%;
+      height: 100%;
     }
   }
 }
