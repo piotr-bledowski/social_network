@@ -1,9 +1,12 @@
 import { hideConvo } from "../../utils/helpers";
-import {useFetch} from "../../utils/hooks";
+import {useFetch, useUser} from "../../utils/hooks";
 import MessageForm from "./MessageForm";
+import MessageList from "./MessageList";
 
 const Conversation = ({friend}) => {
     const {id, username} = friend;
+
+    const user = useUser();
 
     const {data} = useFetch(`/api/get_profile_pic/${username}`);
 
@@ -22,6 +25,7 @@ const Conversation = ({friend}) => {
                 </a>
                 <button onClick={handleClickClose} className="convo-close-btn">x</button>
             </section>
+            <MessageList uri={`/api/get_messages/${username}/${user}`} />
             <MessageForm user={username} />
         </div>
     )

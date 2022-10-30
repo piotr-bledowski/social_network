@@ -43,5 +43,5 @@ urlpatterns = [
     path('search/<str:username>/<str:content_type>/<str:phrase>', views.search),
     path('get_friends/<str:username>', views.get_friends),
     path('get_messages/<str:user1>/<str:user2>', views.get_messages),
-    path('send_message', views.send_message),
+    path('send_message/', views.send_message),
 ]
