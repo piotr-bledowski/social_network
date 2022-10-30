@@ -65,3 +65,18 @@ export const hideConvo = id => {
 
     convo.style.display = 'none';
 }
+
+export const formatDate = date => {
+    let formattedDate = '';
+
+    for (let i = 0; i < date.length - 11; i++) {
+        if (i == 10) {
+            formattedDate += '  ';
+            continue;
+        }
+
+        formattedDate += date[i];
+    }
+
+    return formattedDate;
+}
