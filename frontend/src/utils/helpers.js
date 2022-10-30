@@ -54,14 +54,14 @@ export const hideDialog = (type, id) => {
     dialog.style.display = 'none';
 }
 
-export const showConvo = id => {
-    const convo = document.getElementById(`convo-${id}`);
+export const showConvo = username => {
+    const convo = document.getElementById(`convo-${username}`);
 
     convo.style.display = 'block';
 }
 
-export const hideConvo = id => {
-    const convo = document.getElementById(`convo-${id}`);
+export const hideConvo = username => {
+    const convo = document.getElementById(`convo-${username}`);
 
     convo.style.display = 'none';
 }
@@ -71,7 +71,7 @@ export const formatDate = date => {
 
     for (let i = 0; i < date.length - 11; i++) {
         if (i == 10) {
-            formattedDate += '  ';
+            formattedDate += ' ';
             continue;
         }
 

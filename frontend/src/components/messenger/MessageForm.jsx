@@ -4,12 +4,17 @@ import { apiPost } from "../../utils/helpers";
 import { useUser } from "../../utils/hooks";
 import { useState } from "react";
 
-const MessageForm = ({user}) => {
+const MessageForm = ({ user, trigger, setTrigger }) => {
     const currentUser = useUser();
 
     const [text, setText] = useState();
 
-    const handleSubmit = () => apiPost('send_message', 'application/json', { sender: currentUser, receiver: user, text: text });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setTrigger(trigger ? false : true);
+        setText('');
+        apiPost('send_message', 'application/json', { sender: currentUser, receiver: user, text: text })
+    };
 
     return (
         <div className="message-form-div">

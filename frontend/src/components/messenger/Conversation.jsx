@@ -1,21 +1,25 @@
+import { useState } from "react";
 import { hideConvo } from "../../utils/helpers";
-import {useFetch, useUser} from "../../utils/hooks";
+import { useFetch, useUser } from "../../utils/hooks";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
 
-const Conversation = ({friend}) => {
-    const {id, username} = friend;
+const Conversation = ({ friend }) => {
+    const { username } = friend;
 
     const user = useUser();
 
-    const {data} = useFetch(`/api/get_profile_pic/${username}`);
+    const { data } = useFetch(`/api/get_profile_pic/${username}`);
 
     const handleClickClose = () => {
-        hideConvo(id);
+        hideConvo(username);
     }
 
+    // This makes the changes apply after user sends a message
+    const [trigger, setTrigger] = useState(true);
+
     return (
-        <div id={`convo-${id}`} className="convo">
+        <div id={`convo-${username}`} className="convo">
             <section className="convo-top-bar">
                 <a href={`/profile/${username}`}>
                     <div className="convo-profile-link">
@@ -25,8 +29,8 @@ const Conversation = ({friend}) => {
                 </a>
                 <button onClick={handleClickClose} className="convo-close-btn">x</button>
             </section>
-            <MessageList uri={`/api/get_messages/${username}/${user}`} />
-            <MessageForm user={username} />
+            <MessageList trigger={trigger} setTrigger={setTrigger} uri={`/api/get_messages/${username}/${user}`} />
+            <MessageForm trigger={trigger} setTrigger={setTrigger} user={username} />
         </div>
     )
 }

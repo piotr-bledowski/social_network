@@ -5,15 +5,13 @@ import PostProfileLink from "./PostProfileLink";
 const PostHeader = ({ post }) => {
     const { author, date, title, group } = post;
 
-    const postDate = formatDate(date);
-
     return (
         <div className="post-header">
             <PostProfileLink author={author} />
             {group &&
                 <PostGroupLink group={group} />
             }
-            <p className="post-date">{postDate}</p>
+            <p className="post-date">{formatDate(date)}</p>
             <h3 className="post-title">{title}</h3>
         </div>
     )

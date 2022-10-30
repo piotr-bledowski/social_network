@@ -3,14 +3,14 @@ import { useFetch, useUser } from "../../utils/hooks";
 import Conversation from "./Conversation";
 
 
-const Friend = ({friend}) => {
-    const {id, username} = friend;
+const Friend = ({ friend }) => {
+    const { username } = friend;
 
     const user = useUser();
-    const {data} = useFetch(`/api/get_profile_pic/${user}`);
+    const { data } = useFetch(`/api/get_profile_pic/${user}`);
 
     const handleClick = () => {
-        showConvo(id);
+        showConvo(username);
     }
 
     return (

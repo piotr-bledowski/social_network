@@ -150,7 +150,8 @@ $font-light: #eee;
   .main,
   #profile-img-input,
   #group-img-input,
-  .friend-request button:hover {
+  .friend-request button:hover,
+  .message-list {
     background-color: $espresso-primary;
   }
 
@@ -182,7 +183,8 @@ $font-light: #eee;
   .result-group,
   .result-user,
   .dialog-div,
-  .convo {
+  .convo,
+  .their-message {
     background-color: $espresso-secondary;
   }
 
@@ -192,7 +194,8 @@ $font-light: #eee;
   }
 
   input,
-  textarea {
+  textarea,
+  .my-message {
     background-color: $espresso-input;
     color: $font-light;
   }
@@ -218,7 +221,8 @@ $font-light: #eee;
   .background,
   .main,
   #profile-img-input,
-  #group-img-input {
+  #group-img-input,
+  .message-list {
     background-color: $cappuccino-primary;
   }
 
@@ -249,12 +253,15 @@ $font-light: #eee;
   .comment,
   .result-group,
   .result-user,
-  .dialog-div {
+  .dialog-div,
+  .convo,
+  .their-message {
     background-color: $cappuccino-secondary;
   }
 
   input,
-  textarea {
+  textarea,
+  .my-message {
     background-color: $cappuccino-input;
     color: $font-light;
   }
@@ -280,7 +287,8 @@ $font-light: #eee;
   .background,
   .main,
   #profile-img-input,
-  #group-img-input {
+  #group-img-input,
+  .message-list {
     background-color: $latte-primary;
   }
 
@@ -312,12 +320,14 @@ $font-light: #eee;
   .result-group,
   .result-user,
   .dialog-div,
-  .convo {
+  .convo,
+  .their-message {
     background-color: $latte-secondary;
   }
 
   input,
-  textarea {
+  textarea,
+  .my-message {
     background-color: $latte-input;
     color: $font-dark;
   }
@@ -343,7 +353,8 @@ $font-light: #eee;
   .background,
   .main,
   #profile-img-input,
-  #group-img-input {
+  #group-img-input,
+  .message-list {
     background-color: $yerba-primary;
   }
 
@@ -375,12 +386,14 @@ $font-light: #eee;
   .result-group,
   .result-user,
   .dialog-div,
-  .convo {
+  .convo,
+  .their-message {
     background-color: $yerba-secondary;
   }
 
   input,
-  textarea {
+  textarea,
+  .my-message {
     background-color: $yerba-input;
     color: $font-light;
   }
@@ -1273,7 +1286,43 @@ $font-light: #eee;
 }
 
 .message-list {
-  position: block;
-  width: 100%;
+  display: block;
+  position: relative;
+  width: 96%;
+  margin-left: 2%;
   height: 86%;
+  overflow-y: auto;
+}
+
+.message {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 70%;
+  padding: 0.2em;
+  margin-top: 1rem;
+
+  .message-date {
+    font-size: smaller;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .message-text {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+}
+
+.my-message {
+  border-radius: 1em 1em 0 1em;
+  margin-left: auto;
+  right: 3%;
+}
+
+.their-message {
+  border-radius: 1em 1em 1em 0;
+  margin-right: auto;
+  left: 3%;
 }

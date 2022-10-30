@@ -448,7 +448,9 @@ def get_friends(request, username):
 def get_messages(request, user1, user2):
     messages = Message.objects.filter(Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1))
     serializer = MessageSerializer(messages, many=True)
-    return Response(serializer.data)
+    data = serializer.data
+    data.sort(key=lambda mes: mes['date'])
+    return Response(data)
 
 
 @api_view(['POST'])
