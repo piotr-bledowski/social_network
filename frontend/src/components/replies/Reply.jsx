@@ -1,6 +1,7 @@
 import { useUser } from "../../utils/hooks";
 import DeleteButton from "../buttons/DeleteButton";
 import LikeButton from "../buttons/LikeButton";
+import { formatDate } from "../../utils/helpers";
 
 
 const Reply = ({ reply }) => {
@@ -12,7 +13,7 @@ const Reply = ({ reply }) => {
         <div className="reply">
             <div className="reply-header">
                 <h4 className="reply-author">{author}</h4>
-                <p className="reply-date">{date}</p>
+                <p className="reply-date">{typeof date !== "undefined" ? formatDate(date) : ''}</p>
             </div>
             <div className="reply-content">
                 <p className="reply-text">{text}</p>

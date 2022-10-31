@@ -11,7 +11,7 @@ const PostHeader = ({ post }) => {
             {group &&
                 <PostGroupLink group={group} />
             }
-            <p className="post-date">{formatDate(date)}</p>
+            <p className="post-date">{typeof date !== "undefined" ? formatDate(date) : ''}</p>
             <h3 className="post-title">{title}</h3>
         </div>
     )

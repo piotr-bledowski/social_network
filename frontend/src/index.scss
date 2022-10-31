@@ -1250,8 +1250,9 @@ $font-light: #eee;
     .convo-close-btn {
       height: 3rem;
       width: 3rem;
-      position: relative;
+      position: absolute;
       display: inline;
+      right: 0;
     }
   }
 }

@@ -4,6 +4,7 @@ import ReplyList from "../replies/ReplyList";
 import { useState } from "react";
 import DeleteButton from "../buttons/DeleteButton";
 import { useUser } from "../../utils/hooks";
+import { formatDate } from "../../utils/helpers";
 
 
 const Comment = ({ commentData }) => {
@@ -29,7 +30,7 @@ const Comment = ({ commentData }) => {
             <div className="comment">
                 <div className="comment-header">
                     <h4 className="comment-author">{author}</h4>
-                    <p className="comment-date">{date}</p>
+                    <p className="comment-date">{typeof date !== "undefined" ? formatDate(date) : ''}</p>
                 </div>
                 <div className="comment-content">
                     <p className="comment-text">{text}</p>

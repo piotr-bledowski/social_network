@@ -32,6 +32,13 @@ const LikeButton = ({ likeData }) => {
         }
     }
 
+    if (type === 'post') {
+        console.log(likes);
+        console.log(currentLikes);
+    }
+
+    useEffect(() => setCurrentLikes(likes)); // Somehow this is how I got the like counter to show, I don't even want to know
+
     return (
         <button className="like-button" onClick={handleClick}>
             <h3 className="counter">{currentLikes}</h3>
