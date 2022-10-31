@@ -11,9 +11,10 @@ const MessageForm = ({ user, trigger, setTrigger }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTrigger(trigger ? false : true);
         setText('');
-        apiPost('send_message', 'application/json', { sender: currentUser, receiver: user, text: text })
+        apiPost('send_message', 'application/json', { sender: currentUser, receiver: user, text: text });
+        setTimeout(() => setTrigger(trigger ? false : true), 100);
+
     };
 
     return (

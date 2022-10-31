@@ -78,5 +78,30 @@ export const formatDate = date => {
         formattedDate += date[i];
     }
 
+    var day = formattedDate.slice(0, 10);
+    var hour = formattedDate.slice(10, formattedDate.length);
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var todayDate = yyyy + '-' + mm + '-' + dd;
+
+    if (todayDate === day)
+        return 'Today' + hour;
+
+    var yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    var dd = String(yesterday.getDate()).padStart(2, '0');
+    var mm = String(yesterday.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = yesterday.getFullYear();
+
+    var yesterdayDate = yyyy + '-' + mm + '-' + dd;
+
+    if (yesterdayDate === day)
+        return 'Yesterday' + hour;
+
     return formattedDate;
 }
