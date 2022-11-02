@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { useFetch } from "../../utils/hooks";
+import { useConversationSetup, useFetch } from "../../utils/hooks";
 import Message from "./Message";
 
 const MessageList = ({ uri, trigger, setTrigger }) => {
     const { loading, data, error } = useFetch(uri);
 
-    const [messageData, setMessageData] = useState(data);
-
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>{JSON.stringify(error)}</h1>;
+
+    const [messageData, setMessageData] = useState(data);
+
+    const { setupTrigger, setSetupTrigger } = useConversationSetup();
 
     useEffect(() => {
         fetch(uri, {
@@ -25,7 +27,7 @@ const MessageList = ({ uri, trigger, setTrigger }) => {
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messageData]);
+    }, [messageData, setupTrigger]);
 
     return (
         <div className="message-list">

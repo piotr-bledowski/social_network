@@ -9,6 +9,7 @@ import GroupPageWrapper from './pages/GroupPageWrapper';
 import GroupMenu from './components/groups/GroupMenu';
 import SearchPage from './pages/SearchPage';
 import FriendList from './components/messenger/FriendsList';
+import { ConversationSetupProvider } from './contexts/ConversationSetupContext';
 
 function App() {
   const { theme } = useTheme();
@@ -33,7 +34,9 @@ function App() {
           </Routes>
         </span>
         <span className='right-bar side-bar'>
-          <FriendList uri={`/api/get_friends/${user}`} />
+          <ConversationSetupProvider>
+            <FriendList uri={`/api/get_friends/${user}`} />
+          </ConversationSetupProvider>
         </span>
       </div>
     </div>

@@ -1,16 +1,17 @@
 import { showConvo } from "../../utils/helpers";
-import { useFetch, useUser } from "../../utils/hooks";
+import { useFetch, useUser, useConversationSetup } from "../../utils/hooks";
 import Conversation from "./Conversation";
 
 
 const Friend = ({ friend }) => {
     const { username } = friend;
-
     const user = useUser();
+    const { setupTrigger, setSetupTrigger } = useConversationSetup(); // making conversations scroll down do the bottom upon opening
     const { data } = useFetch(`/api/get_profile_pic/${user}`);
 
     const handleClick = () => {
         showConvo(username);
+        setTimeout(() => setSetupTrigger(setupTrigger ? false : true), 50);
     }
 
     return (

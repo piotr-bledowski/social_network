@@ -6,10 +6,10 @@ import { createContext } from "react";
 export const ConversationSetupContext = createContext();
 
 export const ConversationSetupProvider = ({children}) => {
-    const [trigger, setTrigger] = useState(true);
+    const [setupTrigger, setSetupTrigger] = useState(true);
 
     return (
-        <ConversationSetupContext.Provider value={{trigger, setTrigger}}>
+        <ConversationSetupContext.Provider value={{setupTrigger, setSetupTrigger}}>
             {children}
         </ConversationSetupContext.Provider>
     )
