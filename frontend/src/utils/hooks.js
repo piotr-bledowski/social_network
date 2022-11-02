@@ -2,6 +2,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { GroupContext } from "../contexts/GroupContext";
+import { ConversationSetupContext } from "../contexts/ConversationSetupContext";
 
 export const useTheme = () => useContext(ThemeContext); // made useTheme hook for simplicity
 
@@ -30,3 +31,5 @@ export const useFetch = (uri) => { // Used for GET requests unly !!!
 }
 
 export const useGroup = () => useContext(GroupContext);
+
+export const useConversationSetup = () => useContext(ConversationSetupContext);
