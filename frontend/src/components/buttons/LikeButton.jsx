@@ -21,18 +21,24 @@ const LikeButton = ({ likeData }) => {
                 method: 'DELETE'
             });
             setLiked(false);
-            setCurrentLikes(currentLikes - 1);
+            setCurrentLikes(() => currentLikes - 1);
         }
         else {
             fetch(`/api/like/${type}/${user}/${id}`, {
                 method: 'POST'
             });
             setLiked(true);
-            setCurrentLikes(currentLikes + 1);
+            setCurrentLikes(() => currentLikes + 1);
         }
     }
 
-    useEffect(() => setCurrentLikes(likes)); // Somehow this is how I got the like counter to show, I don't even want to know
+    useEffect(() => {
+        setTimeout(fetch(`/api/get_post/${id}`)
+        .then(data => data.json())
+        .then(data => data.likes)
+        .then(setCurrentLikes),
+        50)
+    }); // Somehow this is how I got the like counter to show, I don't even want to know
 
     return (
         <button className="like-button" onClick={handleClick}>
