@@ -7,7 +7,7 @@ const Friend = ({ friend }) => {
     const { username } = friend;
     const user = useUser();
     const { setupTrigger, setSetupTrigger } = useConversationSetup(); // making conversations scroll down do the bottom upon opening
-    const { data } = useFetch(`/api/get_profile_pic/${user}`);
+    const { data } = useFetch(`/api/get_profile_pic/${username}`);
 
     const handleClick = () => {
         showConvo(username);

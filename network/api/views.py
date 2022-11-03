@@ -107,8 +107,11 @@ def like(request, type, username, id):
     if new_like.is_valid():
         new_like.save() # add record to PostLike table
         element.likes += 1
+        print('#########')
+        print(element.likes)
         element.save() # update post with increased likes number
         return Response({f"post {id} liked by": f" user {request.user}"})
+    print(new_like.errors)
     return Response({'status': 'Something went wrong, big time'})
 
 

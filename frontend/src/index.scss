@@ -29,7 +29,9 @@ a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   position: absolute;
   left: 6%;
-  top: -10%;
+  top: 15%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .top-bar {
@@ -1066,6 +1068,7 @@ $font-light: #eee;
   height: 100%;
   width: 35vw;
   left: 25vw;
+  bottom: 15%;
 
   input,
   button {
@@ -1239,11 +1242,15 @@ $font-light: #eee;
         border-radius: 50%;
         display: inline;
         position: relative;
+        left: 10px;
+        top: 5px;
       }
 
       h3 {
         display: inline;
         position: relative;
+        bottom: 8px;
+        left: 20px;
       }
     }
 

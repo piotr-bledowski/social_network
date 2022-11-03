@@ -33,7 +33,7 @@ const LikeButton = ({ likeData }) => {
     }
 
     useEffect(() => {
-        setTimeout(fetch(`/api/get_post/${id}`)
+        setTimeout(fetch(`/api/get_${type}/${id}`)
         .then(data => data.json())
         .then(data => data.likes)
         .then(setCurrentLikes),
