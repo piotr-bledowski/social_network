@@ -1,12 +1,10 @@
 import { useUser } from '../utils/hooks'
 import GroupMemberButton from '../components/buttons/GroupMemberButton';
-import GroupPicForm from '../components/GroupPicForm';
+import PictureForm from '../components/PictureForm';
 
 const GroupPageHeader = ({ group }) => {
     const { name, creator, picture, members } = group;
     const user = useUser();
-
-    //console.log(member);
 
     const my = user === creator;
 
@@ -14,7 +12,7 @@ const GroupPageHeader = ({ group }) => {
         <section className="group-page-header">
             <img className='group-page-img' src={`http://127.0.0.1:8000${picture}`} />
             {my &&
-                <GroupPicForm name={name} />
+                <PictureForm type={'group'} name={name} />
             }
             <h1>{name}</h1>
             <a href={`/profile/${creator}`} >
