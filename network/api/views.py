@@ -447,6 +447,8 @@ def get_friends(request, username):
     return Response(serializer.data)
 
 
+#TODO this needs to be optimized greatly, like only get a couple of messages at a time
+
 @api_view(['GET'])
 def get_messages(request, user1, user2):
     messages = Message.objects.filter(Q(sender=user1, receiver=user2) | Q(sender=user2, receiver=user1))

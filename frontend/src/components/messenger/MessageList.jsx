@@ -12,7 +12,9 @@ const MessageList = ({ uri, trigger, setTrigger }) => {
 
     const { setupTrigger, setSetupTrigger } = useConversationSetup();
 
-    useEffect(() => {
+    const [intervalTrigger, setIntervalTrigger] = useState(true);
+
+    const updateMessages = () => {
         fetch(uri, {
             method: 'GET',
             headers: {
@@ -21,7 +23,15 @@ const MessageList = ({ uri, trigger, setTrigger }) => {
         })
             .then(data => data.json())
             .then(setMessageData)
-    }, [trigger]);
+    }
+
+    useEffect(() => {
+        updateMessages();
+        setTimeout(() => {
+            setIntervalTrigger(() => intervalTrigger ? false : true)
+        }, 3000);
+        console.log('Messages fetched!');
+    }, [trigger, intervalTrigger]);
 
     const bottomRef = useRef(null);
 
