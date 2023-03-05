@@ -1,11 +1,12 @@
 import { useFetch } from "../../utils/hooks";
 import { hideConvo } from "../../utils/helpers";
 
-const ConversationTopBar = ({username}) => {
+const ConversationTopBar = ({ username }) => {
     const { data } = useFetch(`/api/get_profile_pic/${username}`);
 
     const handleClickClose = () => {
         hideConvo(username);
+        history.replaceState({}, 'Coffee Bean', '');
     }
 
     return (

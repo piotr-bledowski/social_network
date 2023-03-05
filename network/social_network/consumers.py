@@ -39,10 +39,10 @@ class ChatConsumer(WebsocketConsumer):
         await self.send(
             text = json.dumps(
                 {
-                    'message': message
+                    'message': message,
                     'username': username
                 }
             )
         )
-        
+
     pass
