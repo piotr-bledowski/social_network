@@ -12,15 +12,15 @@ import os
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-import social_network.routing
+#import social_network.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'network.settings')
 
-application = ProtocolTypeRouter({
-    'http': get_asgi_application(),
-    'websocket': AuthMiddlewareStack(
-        URLRouter(
-            social_network.routing.websocket_urlpatterns
-        )
-    )
-})
+# application = ProtocolTypeRouter({
+#     'http': get_asgi_application(),
+#     'websocket': AuthMiddlewareStack(
+#         URLRouter(
+#             social_network.routing.websocket_urlpatterns
+#         )
+#     )
+# })
