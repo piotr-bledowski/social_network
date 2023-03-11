@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_groups, search_posts, search_users
 
 from .models import Friend, FriendRequest, Group, GroupMember, Message, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
-from .serializers import FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, MessageSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
+from .serializers import CommentNotificationSerializer, ReplyNotificationSerializer, FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, MessageSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
@@ -36,6 +36,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
 def index(request):
     return Response(API_DESCRIPTION)
 
+
+#? Posts
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
@@ -90,6 +92,8 @@ def get_group_posts(request, group_name):
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data[::-1])
 
+
+#? Likes
 
 @api_view(['POST'])
 def like(request, type, username, id):
@@ -151,6 +155,8 @@ def is_liked(request, type, username, id):
         return Response({"liked": "no"})
 
 
+#? Comments
+
 @api_view(['POST'])
 def create_comment(request):
     # incrementing post's comments counter
@@ -179,6 +185,8 @@ def get_comments(request, id):
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
+
+#? Replies to comments
 
 @api_view(['POST'])
 def create_reply(request):
@@ -209,6 +217,8 @@ def get_replies(request, id):
     return Response(serializer.data)
 
 
+#? Profile Pictures
+
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
 def set_profile_pic(request, username):
@@ -232,6 +242,8 @@ def get_profile_pic(request, username):
             serializer.save()
     return Response(serializer.data)
 
+
+#? Groups
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser]) # these allow files to be parsed (not exactly JSON data)
@@ -309,6 +321,8 @@ def is_member(request, username, group_name):
         return Response({'member': 'no'})
 
 
+#? Friends
+
 @api_view(['GET'])
 def get_friend_requests(request, username):
     requests = FriendRequest.objects.filter(receiver=username)
@@ -371,6 +385,8 @@ def is_friend(request, user1, user2):
     except Friend.DoesNotExist:
         return Response('no')
 
+
+#? Feed
 
 @api_view(['GET'])
 def get_feed(request, username):
@@ -447,7 +463,19 @@ def get_friends(request, username):
     return Response(serializer.data)
 
 
-#TODO this needs to be optimized greatly, like only get a couple of messages at a time
+#? Notifications
+
+@api_view(['POST'])
+def send_comment_notification(request):
+    serializer = CommentNotificationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')
+
+
+#? Messages
+#TODO this needs to be optimized greatly, like only get a couple of messages at a time (like FB messenger)
 
 @api_view(['GET'])
 def get_messages(request, user1, user2):
