@@ -1,6 +1,6 @@
 from dataclasses import field
 from rest_framework import serializers
-from .models import Friend, FriendRequest, Group, GroupMember, Message, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
+from .models import Friend, FriendRequest, CommentNotification, ReplyNotification, Group, GroupMember, Message, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -75,6 +75,18 @@ class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FriendRequest
         fields = ['id', 'sender', 'receiver', 'date']
+
+
+class CommentNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentNotification
+        fields = ['id', 'sender', 'receiver', 'post', 'date']
+
+
+class ReplyNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReplyNotification
+        fields = ['id', 'sender', 'receiver', 'comment', 'date']
 
 
 class MessageSerializer(serializers.ModelSerializer):
