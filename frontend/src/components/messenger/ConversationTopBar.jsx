@@ -6,7 +6,7 @@ const ConversationTopBar = ({ username }) => {
 
     const handleClickClose = () => {
         hideConvo(username);
-        history.replaceState({}, 'Coffee Bean', '');
+        //history.replaceState({}, 'Coffee Bean', '');
     }
 
     return (

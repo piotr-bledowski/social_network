@@ -13,8 +13,8 @@ const Friend = ({ friend }) => {
         showConvo(username);
 
         // change URL without reloading the page so that websocket connection works
-        let chatName = user < username ? `${user}_${username}` : `${username}_${user}`;
-        history.replaceState({}, 'Coffee Bean', `/chat/${chatName}`);
+        //let chatName = user < username ? `${user}_${username}` : `${username}_${user}`;
+        //history.replaceState({}, 'Coffee Bean', `/chat/${chatName}`);
 
         setTimeout(() => setSetupTrigger(setupTrigger ? false : true), 50);
     }
