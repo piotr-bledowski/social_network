@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useConversationSetup, useFetch } from "../../utils/hooks";
 import Message from "./Message";
 
-const MessageList = ({ uri, trigger, setTrigger }) => {
+const MessageList = ({ uri, trigger, setTrigger, newMessagesCounter, setNewMessagesCounter }) => {
     const { loading, data, error } = useFetch(uri);
 
     if (loading) return <h1>Loading...</h1>;
@@ -27,6 +27,18 @@ const MessageList = ({ uri, trigger, setTrigger }) => {
 
     useEffect(() => {
         updateMessages();
+
+        // if there are any new messages, update the counter
+        //console.log(messageData);
+        let counter = 0;
+        messageData.forEach(message => {
+            if (message.read === false) {
+                counter++;
+            }
+        });
+
+        setNewMessagesCounter(() => counter);
+
         setTimeout(() => {
             setIntervalTrigger(() => intervalTrigger ? false : true)
         }, 3000);

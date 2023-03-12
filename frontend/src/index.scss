@@ -833,9 +833,15 @@ $font-light: #eee;
     width: 100%;
 
     img,
-    h3 {
+    h3,
+    h4 {
       display: inline;
       position: relative;
+    }
+
+    .new-messages-counter {
+      left: -10%;
+      top: -20%;
     }
 
     img {
@@ -1335,3 +1341,7 @@ $font-light: #eee;
   margin-right: auto;
   left: 3%;
 }
+
+// .new-messages-counter {
+//   display: inline;
+// }

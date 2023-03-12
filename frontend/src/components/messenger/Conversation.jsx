@@ -5,7 +5,7 @@ import ConversationTopBar from "./ConversationTopBar";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
 
-const Conversation = ({ friend }) => {
+const Conversation = ({ friend, newMessagesCounter, setNewMessagesCounter }) => {
     const { username } = friend;
 
     const user = useUser();
@@ -16,7 +16,7 @@ const Conversation = ({ friend }) => {
     return (
         <div id={`convo-${username}`} className="convo">
             <ConversationTopBar username={username} />
-            <MessageList trigger={trigger} setTrigger={setTrigger} uri={`/api/get_messages/${username}/${user}`} />
+            <MessageList trigger={trigger} setTrigger={setTrigger} uri={`/api/get_messages/${username}/${user}`} newMessagesCounter={newMessagesCounter} setNewMessagesCounter={setNewMessagesCounter} />
             <MessageForm trigger={trigger} setTrigger={setTrigger} user={username} />
         </div>
     )

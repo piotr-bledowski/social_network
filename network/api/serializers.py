@@ -92,4 +92,4 @@ class ReplyNotificationSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ['id', 'sender', 'receiver', 'date', 'text']
+        fields = ['id', 'sender', 'receiver', 'date', 'text', 'read']
