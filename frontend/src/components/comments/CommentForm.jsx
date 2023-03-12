@@ -6,7 +6,7 @@ const CommentForm = ({ post }) => {
     const [text, setText] = useState('');
     const user = useUser();
 
-    const handleSubmit = () => apiPost('create_comment', 'application/json', { post: post, author: user, text: text });
+    const handleSubmit = () => apiPost('create_comment/', 'application/json', { post: post, author: user, text: text });
 
     return (
         <div className="comment-form-div">

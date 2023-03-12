@@ -1,16 +1,19 @@
 import { showConvo } from "../../utils/helpers";
 import { useFetch, useUser, useConversationSetup } from "../../utils/hooks";
 import Conversation from "./Conversation";
+import { apiPost } from "../../utils/helpers";
 
 
 const Friend = ({ friend }) => {
     const { username } = friend;
-    const user = useUser();
+    const currentUser = useUser();
     const { setupTrigger, setSetupTrigger } = useConversationSetup(); // making conversations scroll down do the bottom upon opening
     const { data } = useFetch(`/api/get_profile_pic/${username}`);
 
     const handleClick = () => {
         showConvo(username);
+
+        apiPost(`read_messages/${username}/${currentUser}`, 'application/json', {});
 
         // change URL without reloading the page so that websocket connection works
         //let chatName = user < username ? `${user}_${username}` : `${username}_${user}`;

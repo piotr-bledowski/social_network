@@ -13,7 +13,7 @@ export const shortText = (id, img, text) => {
 }
 
 export const apiPost = (uri, type, data) => {
-    fetch(`/api/${uri}/`, {
+    fetch(`/api/${uri}`, {
         method: 'POST',
         headers: {
             'Content-Type': type
