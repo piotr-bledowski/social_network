@@ -41,8 +41,12 @@ API_DESCRIPTION = {
         "Get user's feed (all posts on the home page)" : '/get_feed/<str:username>',
         "Search": '/search/<str:username>/<str:content_type>/<str:phrase>',
         "Get friends": '/get_friends/<str:username>',
+        "Send a new comment notification": '/send_comment_notification/',
+        "Send a new reply notification": '/send_reply_notification/',
+        "Get notifications": '/get_notifications/<str:username>',
         "Get messages": '/get_messages/<str:user1>/<str:user2>',
         "Send a message": '/send_message',
+        "Read new messages (mark them as read)": '/read_messages/<str:sender>/<str:receiver>',
     }
 
 

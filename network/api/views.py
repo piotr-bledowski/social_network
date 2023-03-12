@@ -474,6 +474,15 @@ def send_comment_notification(request):
     return Response('INVALID POST DATA')
 
 
+@api_view(['POST'])
+def send_reply_notification(request):
+    serializer = ReplyNotificationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response('INVALID POST DATA')
+
+
 @api_view(['GET'])
 def get_notifications(request, username):
     pass
@@ -497,3 +506,12 @@ def send_message(request):
         serializer.save()
         return Response(serializer.data)
     return Response('INVALID POST DATA')
+
+
+@api_view(['POST'])
+def read_messages(request, sender, receiver):
+    messages = Message.objects.filter(Q(sender=sender, receiver=receiver))
+    for message in messages:
+        message.read = True
+        message.save()
+    return Response('All messages read')

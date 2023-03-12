@@ -42,6 +42,10 @@ urlpatterns = [
     path('get_feed/<str:username>', views.get_feed),
     path('search/<str:username>/<str:content_type>/<str:phrase>', views.search),
     path('get_friends/<str:username>', views.get_friends),
+    path('send_comment_notification/', views.send_comment_notification),
+    path('send_reply_notification/', views.send_reply_notification),
+    path('get_notifications/<str:username>', views.get_notifications),
     path('get_messages/<str:user1>/<str:user2>', views.get_messages),
     path('send_message/', views.send_message),
+    path('read_messages/<str:sender>/<str:receiver>', views.read_messages),
 ]
