@@ -114,3 +114,13 @@ def search_groups(phrase):
 def search_users(phrase):
     users = User.objects.filter(username__icontains=phrase)
     return list(users)
+
+
+#? Notification helpers
+
+def get_comment_notifications(user):
+    pass
+
+
+def get_reply_notifications(user):
+    pass

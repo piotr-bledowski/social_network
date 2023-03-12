@@ -99,15 +99,15 @@ class FriendRequest(models.Model):
 
 
 class CommentNotification(models.Model):
-    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='request_sender')
-    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='request_reveiver')
+    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='comment_notification_sender')
+    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='comment_notification_reveiver')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
 
 class ReplyNotification(models.Model):
-    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='request_sender')
-    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='request_reveiver')
+    sender = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='reply_notification_sender')
+    receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='reply_notification_reveiver')
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
@@ -117,3 +117,4 @@ class Message(models.Model):
     receiver = models.ForeignKey(User, to_field='username', on_delete=models.CASCADE, related_name='message_receiver')
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     text = models.CharField(max_length=2048, blank=False)
+    read = models.BooleanField(default=True)

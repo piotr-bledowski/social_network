@@ -474,6 +474,10 @@ def send_comment_notification(request):
     return Response('INVALID POST DATA')
 
 
+@api_view(['GET'])
+def get_notifications(request, username):
+    pass
+
 #? Messages
 #TODO this needs to be optimized greatly, like only get a couple of messages at a time (like FB messenger)
 
