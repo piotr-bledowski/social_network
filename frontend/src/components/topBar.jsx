@@ -12,7 +12,7 @@ const TopBar = () => {
         <div className='top-bar'>
             <div className="flex-container">
                 <FontAwesomeIcon className='main-icon' icon={faMugHot} />
-                <h1 id='network-name'><a href='/'>COFFEE BEAN</a></h1>
+                <h1 id='network-name'><a href='/'>COFFEE BEANS</a></h1>
                 <SearchBar />
                 <NotificationButton />
                 <ProfileButton />
