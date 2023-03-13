@@ -1,5 +1,5 @@
 import { showConvo } from "../../utils/helpers";
-import { useFetch, useUser, useConversationSetup } from "../../utils/hooks";
+import { useFetch, useUser, useConversationSetup, useMessageCounter } from "../../utils/hooks";
 import Conversation from "./Conversation";
 import { apiPost } from "../../utils/helpers";
 import { useState } from "react";
@@ -9,8 +9,8 @@ const Friend = ({ friend }) => {
     const { username } = friend;
     const currentUser = useUser();
     const { setupTrigger, setSetupTrigger } = useConversationSetup(); // making conversations scroll down do the bottom upon opening
+    const { messageCounter, setMessageCounter } = useMessageCounter();
     const { data } = useFetch(`/api/get_profile_pic/${username}`);
-    const [newMessagesCounter, setNewMessagesCounter] = useState(0);
 
     const handleClick = () => {
         showConvo(username);
@@ -35,7 +35,7 @@ const Friend = ({ friend }) => {
                     <h3 className="friend-name">{username}</h3>
                 </button>
             </div>
-            <Conversation friend={friend} newMessagesCounter={newMessagesCounter} setNewMessagesCounter={setNewMessagesCounter} />
+            <Conversation friend={friend} />
         </>
     )
 }

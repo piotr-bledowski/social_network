@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
 
-// The idea behind is context is to 
+// The idea behind is context is to make sure the message list is scrolled down
+// all the way to the bottom
 
 export const ConversationSetupContext = createContext();
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useConversationSetup, useFetch } from "../../utils/hooks";
+import { useConversationSetup, useFetch, useMessageCounter } from "../../utils/hooks";
 import Message from "./Message";
 
-const MessageList = ({ uri, trigger, setTrigger, newMessagesCounter, setNewMessagesCounter }) => {
+const MessageList = ({ uri, trigger }) => {
     const { loading, data, error } = useFetch(uri);
 
     if (loading) return <h1>Loading...</h1>;
@@ -10,7 +10,9 @@ const MessageList = ({ uri, trigger, setTrigger, newMessagesCounter, setNewMessa
 
     const [messageData, setMessageData] = useState(data);
 
-    const { setupTrigger, setSetupTrigger } = useConversationSetup();
+    const { setupTrigger } = useConversationSetup();
+
+    const { setMessageCounter } = useMessageCounter();
 
     const [intervalTrigger, setIntervalTrigger] = useState(true);
 
@@ -37,7 +39,7 @@ const MessageList = ({ uri, trigger, setTrigger, newMessagesCounter, setNewMessa
             }
         });
 
-        setNewMessagesCounter(() => counter);
+        setMessageCounter(() => counter);
 
         setTimeout(() => {
             setIntervalTrigger(() => intervalTrigger ? false : true)
