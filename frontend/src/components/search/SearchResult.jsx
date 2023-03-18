@@ -1,5 +1,5 @@
-import Post from "./posts/Post";
-import { useFetch } from "../utils/hooks";
+import Post from "../posts/Post";
+import { useFetch } from "../../utils/hooks";
 
 const SearchResult = ({ result }) => {
     if (result.type === 'post') {

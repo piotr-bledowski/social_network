@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBellConcierge } from "@fortawesome/free-solid-svg-icons";
 import { useFetch, useUser } from "../../utils/hooks";
-import FriendRequest from "../FriendRequest";
+import FriendRequest from "../notifications/FriendRequest";
 
 const NotificationButton = () => {
     const user = useUser();

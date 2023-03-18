@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import SearchResultsList from "../components/SearchResultsList";
+import SearchResultsList from "../components/search/SearchResultsList";
 import { useUser } from "../utils/hooks"
 
 const SearchPage = () => {

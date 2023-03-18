@@ -1,4 +1,4 @@
-import { useFetch } from "../utils/hooks";
+import { useFetch } from "../../utils/hooks";
 import SearchResult from "./SearchResult";
 
 

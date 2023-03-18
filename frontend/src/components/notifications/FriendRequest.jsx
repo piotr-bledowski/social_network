@@ -1,4 +1,4 @@
-import PostProfileLink from "./posts/PostProfileLink";
+import PostProfileLink from "../posts/PostProfileLink";
 
 
 const FriendRequest = ({ request }) => {

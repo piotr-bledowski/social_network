@@ -4,7 +4,7 @@ import ThemeDropdown from "./buttons/ThemeDropdown";
 import ProfileButton from "./buttons/ProfileButton";
 import LogoutButton from "./buttons/LogoutButton";
 import NotificationButton from "./buttons/NotificationButton";
-import SearchBar from "./SearchBar";
+import SearchBar from "./search/SearchBar";
 
 const TopBar = () => {
 
