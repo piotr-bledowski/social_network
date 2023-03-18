@@ -7,7 +7,7 @@ const ReplyForm = ({ comment }) => {
     const [text, setText] = useState('');
     const user = useUser();
 
-    const handleSubmit = () => apiPost('create_reply/', 'application/json', { comment: comment, author: user, text: text });
+    const handleSubmit = () => apiPost('create_reply/', 'application/json', { comment: comment, author: user, text: text, read: false });
 
     return (
         <div className="reply-form-div">

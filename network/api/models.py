@@ -49,6 +49,7 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
     replies = models.IntegerField(default=0)
+    read = models.BooleanField(default=True) # read by the author of the post
 
 
 class Reply(models.Model):
@@ -57,6 +58,7 @@ class Reply(models.Model):
     text = models.CharField(max_length=1024, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
+    read = models.BooleanField(default=True) # read by the author of the comment
 
 
 class PostLike(models.Model):

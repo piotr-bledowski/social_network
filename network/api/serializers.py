@@ -20,13 +20,13 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'post', 'author',
-                  'text', 'date', 'likes', 'replies']
+                  'text', 'date', 'likes', 'replies', 'read']
 
 
 class ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
-        fields = ['id', 'comment', 'author', 'text', 'date', 'likes']
+        fields = ['id', 'comment', 'author', 'text', 'date', 'likes', 'read']
 
 
 class PostLikeSerializer(serializers.ModelSerializer):
