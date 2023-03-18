@@ -10,6 +10,7 @@ import GroupMenu from './components/groups/GroupMenu';
 import SearchPage from './pages/SearchPage';
 import FriendList from './components/messenger/FriendsList';
 import { ConversationSetupProvider } from './contexts/ConversationSetupContext';
+import { MessageCounterProvider } from './contexts/MessageCounterContext';
 
 function App() {
   const { theme } = useTheme();
@@ -35,7 +36,9 @@ function App() {
         </span>
         <span className='right-bar side-bar'>
           <ConversationSetupProvider>
-            <FriendList uri={`/api/get_friends/${user}`} />
+            <MessageCounterProvider>
+              <FriendList uri={`/api/get_friends/${user}`} />
+            </MessageCounterProvider>
           </ConversationSetupProvider>
         </span>
       </div>

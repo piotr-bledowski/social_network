@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useConversationSetup, useFetch, useMessageCounter } from "../../utils/hooks";
+import { useConversationSetup, useFetch, useMessageCounter, useUser } from "../../utils/hooks";
 import Message from "./Message";
 
 const MessageList = ({ uri, trigger }) => {
@@ -8,11 +8,13 @@ const MessageList = ({ uri, trigger }) => {
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>{JSON.stringify(error)}</h1>;
 
+    const user = useUser();
+
     const [messageData, setMessageData] = useState(data);
 
     const { setupTrigger } = useConversationSetup();
 
-    const { setMessageCounter } = useMessageCounter();
+    const { messageCounter, setMessageCounter } = useMessageCounter();
 
     const [intervalTrigger, setIntervalTrigger] = useState(true);
 
@@ -34,7 +36,7 @@ const MessageList = ({ uri, trigger }) => {
         //console.log(messageData);
         let counter = 0;
         messageData.forEach(message => {
-            if (message.read === false) {
+            if (message.receiver === user && message.read === false) {
                 counter++;
             }
         });

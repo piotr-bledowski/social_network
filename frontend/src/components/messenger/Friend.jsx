@@ -28,8 +28,8 @@ const Friend = ({ friend }) => {
         <>
             <div className="friend">
                 <button onClick={handleClick}>
-                    {newMessagesCounter > 0 &&
-                        <h4 className="new-messages-counter">{newMessagesCounter}</h4>
+                    {messageCounter > 0 &&
+                        <h4 className="new-messages-counter">{messageCounter}</h4>
                     }
                     <img src={`http://127.0.0.1:8000${data.picture}`} className="friend-pic" />
                     <h3 className="friend-name">{username}</h3>
