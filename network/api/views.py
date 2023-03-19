@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
 
-from .helpers import API_DESCRIPTION, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_groups, search_posts, search_users
+from .helpers import API_DESCRIPTION, get_serialized_comment_notifications, get_serialized_reply_notifications, get_serialized_friend_requests, add_member, get_friends_private_posts, get_groups_private_posts, get_public_posts, get_users_friends, get_users_group_names, get_users_own_posts, search_groups, search_posts, search_users
 
 from .models import Friend, FriendRequest, Group, GroupMember, Message, ProfilePicture, User, Post, Comment, Reply, PostLike, CommentLike, ReplyLike
 from .serializers import CommentNotificationSerializer, ReplyNotificationSerializer, FriendRequestSerializer, FriendSerializer, GroupMemberSerializer, GroupSerializer, MessageSerializer, PostLikeSerializer, CommentLikeSerializer, ProfilePictureSerializer, ReplyLikeSerializer, PostSerializer, CommentSerializer, ReplySerializer, UserSerializer
@@ -485,7 +485,21 @@ def send_reply_notification(request):
 
 @api_view(['GET'])
 def get_notifications(request, username):
-    pass
+    serialized_comment_notifications = get_serialized_comment_notifications(username)
+    serialized_reply_notifications = get_serialized_reply_notifications(username)
+    serialized_friend_requests = get_serialized_friend_requests(username)
+
+    for notification in serialized_comment_notifications.data:
+        notification['type'] = 'comment-notification'
+
+    for notification in serialized_reply_notifications.data:
+        notification['type'] = 'reply-notification'
+    
+    for notification in serialized_friend_requests.data:
+        notification['type'] = 'friend-request'
+    
+    data = serialized_comment_notifications.data + serialized_reply_notifications.data + serialized_friend_requests.data
+    return Response(data)
 
 #? Messages
 #TODO this needs to be optimized greatly, like only get a couple of messages at a time (like FB messenger)

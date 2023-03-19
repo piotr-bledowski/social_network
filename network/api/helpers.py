@@ -1,6 +1,6 @@
 from rest_framework.response import Response
-from .models import Friend, Group, Post, GroupMember, User
-from .serializers import GroupMemberSerializer
+from .models import Friend, Group, FriendRequest, Post, GroupMember, User, CommentNotification, ReplyNotification
+from .serializers import GroupMemberSerializer, CommentNotificationSerializer, ReplyNotificationSerializer, FriendRequestSerializer
 from django.db.models import Q
 
 # helper functions and stuff to help avoid making views.py one giant behemoth of a file, which it is nonetheless, but like, I'm trying
@@ -122,9 +122,19 @@ def search_users(phrase):
 
 #? Notification helpers
 
-def get_comment_notifications(user):
-    pass
+def get_serialized_comment_notifications(user):
+    comment_notifications = CommentNotification.objects.filter(receiver=user)
+    comment_notifications_serializer = CommentNotificationSerializer(comment_notifications, many=True)
+    return comment_notifications_serializer
 
 
-def get_reply_notifications(user):
-    pass
+def get_serialized_reply_notifications(user):
+    reply_notifications = ReplyNotification.objects.filter(receiver=user)
+    reply_notifications_serializer = ReplyNotificationSerializer(reply_notifications, many=True)
+    return reply_notifications_serializer
+
+
+def get_serialized_friend_requests(user):
+    friend_requests = FriendRequest.objects.filter(receiver=user)
+    friend_requests_serializer = FriendRequestSerializer(friend_requests, many=True)
+    return friend_requests_serializer
